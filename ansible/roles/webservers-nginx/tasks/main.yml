@@ -1,0 +1,12 @@
+---
+
+- name: install the nginx reverse proxy
+  apt:
+    name: nginx
+    update_cache: yes
+
+- name: enable nginx service
+  systemd:
+    name: nginx
+    state: started
+    enabled: yes
