@@ -1,0 +1,13 @@
+---
+
+# - hosts: nginx_webservers
+#   roles:
+#     - webservers-nginx
+
+    
+- hosts: nginx_webservers
+  become: yes
+  tasks:
+    - include_role:
+        name: webservers-nginx
+

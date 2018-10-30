@@ -1,9 +1,6 @@
----
-title: Playbooks tutorial
----
-## Ansible tutorial
+# Ansible tutorial
 
-This will be a crash course on learning how to set up and use ansible by examples. 
+This will be a crash course on learning how to set up and use Ansible by examples. 
 
 Even though all the information will be provided here, I strongly recommend to follow the tutorial for a better experience. 
 
@@ -13,7 +10,7 @@ This series is divided into the following parts:
     * Install all the required software for this tutorial
 * Part 2: best practices and first playbook
     * Create a role to provision the popular nginx webserver with a sample page
-    * Create a playbook to use it
+    * Create a playbook to use the role
 * Part 3: handling the inventory
     * Variable precedence
     * Multiple environments
@@ -28,9 +25,11 @@ This series is divided into the following parts:
     * Add tests to our role
 
 
+## Install all the required software for this tutorial
+
 ### Prerequisites
 
-In this tutorial, and the upcoming tutorials it will be assumed that ansible is used inside a Python Virtual Environment. The advantage of this is that we can access several versions of Ansible, and install more packages on top of it.
+In this tutorial, and the upcoming tutorials it will be assumed that Ansible is used inside a Python Virtual Environment. The advantage of this is that we can access several versions of Ansible, and install more packages on top of it.
 
 I wrote this using Linux Ubuntu, but the steps should be transferable to any OS you use.
 
@@ -62,14 +61,14 @@ To deactivate the virtual environment simply run `deactivate`. After this you wi
 *Note*: for the purpose of this tutorial leave the virtual environment activated at all times. 
 
 
-#### Install ansible
+#### Install Ansible
 
 Get the latest stable release (2.7 at the moment of this guide):
 ```
 pip install ansible
 ```
 
-Verify ansible has been intalled:
+Verify Ansible has been intalled:
 ```
 ansible --version
 ```
