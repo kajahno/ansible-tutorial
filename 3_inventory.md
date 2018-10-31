@@ -276,10 +276,120 @@ group_vars
 
 Let's talk about secrets now!
 
+### Vault and secrets
+
+Ansible includes a tool that enables the encryption/decryption of files, making it very convenient to work with secrets. This tool is called [Ansible Vault](https://docs.ansible.com/ansible/2.5/user_guide/vault.html).
+
+Normally makes more sense to just encrypt the files that contain sensitive data. However, with Ansible Vault you can encrypt any file.
+
+The Ansible Vault has many features. In this tutorial we'll just focus on encryption and decryption of files as normally this is enough to get started.
+
+#### Encrypt file
+
+```
+ansible-vault encrypt path/to/file
+```
+> By default if there are no saved passwords, the tool will prompt for a new password to be entered.
+
+#### Decrypt file
+
+```
+ansible-vault decrypt path/to/file
+```
+
+<br/>
+In our case we will modify the ssh password from a file, to an encrypted file. To achieve this please do:
+
+* Make sure the content of the file `ansible/inventory/group_vars/nginx_webservers/vars.yml` is:
+    ```
+    ---
+
+    ansible_ssh_port: 2222
+    ansible_user: vagrant
+    ```
+* Create the vault file for the host group `nginx_webservers`:
+    ```
+    touch ansible/inventory/group_vars/nginx_webservers/vault.yml
+    ```
+* Make sure the content of the file `ansible/inventory/group_vars/nginx_webservers/vault.yml` is:
+    ```
+    ---
 
 
+    ansible_ssh_pass: vagrant
+    ```
+* Encrypt the vault file:
+    ```
+    ansible-vault encrypt inventory/group_vars/nginx_webservers/vault.yml
+    ```
+    > You should see `Encryption successful` as a result of the operation. Remember this password!
+* Verify the content of the now encrypted file
+    ```
+    cat ansible/inventory/group_vars/nginx_webservers/vault.yml
+    ```
+    > You should see the file with some encrypted pattern
 
-## [Next up -> Part 3: handling the inventory](#)
+After doing this we can run again the playbook as usual.
+
+#### Same run command for the playbook
+
+Command:
+```
+ansible-playbook -i inventory/hosts webservers.yml
+```
+
+The output should be an error:
+```
+PLAY [all] ***************************************************************************************************************************************************************************************************************************
+ERROR! Attempting to decrypt but no vault secrets found
+```
+
+#### Run asking for the secrets password
+
+Command:
+```
+ansible-playbook -i inventory/hosts webservers.yml --ask-vault-pass
+```
+
+The output should prompt for the decryption password. After the playbook should run successfuly. 
+
+#### Run using a file with the vault password in it
+
+Create a file and store the password in it:
+```
+echo "YOU_PASSWORD_HERE" > vaultPasswordFile
+```
+
+Run the playbook specifying the file:
+```
+ansible-playbook -i inventory/hosts webservers.yml --vault-password-file ./vaultPasswordFile
+```
+
+The playbook should run successfuly. 
+
+#### Run using the vault password file environment variable
+
+Export the location of the password file as an environment variable:
+```
+export ANSIBLE_VAULT_PASSWORD_FILE=absolute/path/to/vaultPasswordFile
+```
+
+
+Run the playbook without specifying the vault password file:
+```
+ansible-playbook -i inventory/hosts webservers.yml
+```
+
+The playbook should run successfly.
+
+<br/>
+
+Until here you have the knowledge to spin up Ansible, and configure it according to your requirements. It is true that the role we just created was very simple, however there is extended documentation regarding roles, specially using [Ansible Galaxy](https://galaxy.ansible.com/), which won't be cover in this tutorial.
+
+Let's get to know more about Ansible in the next modules!
+
+
+## [Next up -> Part 4: getting to know the internals](#)
 
 ### References
 - [Python virtual environments](https://docs.python-guide.org/dev/virtualenvs/)
