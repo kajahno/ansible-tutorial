@@ -5,7 +5,7 @@
 #     - webservers-nginx
 
     
-- hosts: nginx_webservers
+- hosts: all
   become: yes
   tasks:
     - include_role:
