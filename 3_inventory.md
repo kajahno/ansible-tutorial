@@ -137,6 +137,145 @@ ansible-playbook -i inventory/hosts webservers.yml
 
 The output should be the same. 
 
+### Multiple inventories
+
+It's a common design pattern to support several environments using Ansible. The final layout of the inventory will depend on how you handle your customers, or how many products you deploy on each environment. Let's evaluate two main layouts.
+
+#### Inventory layout 1: multiple environments
+
+Consider the following inventory layout:
+
+```
+inventory
+├── prod
+│   ├── group_vars
+│   │   ├── all
+│   │   │   └── vars.yml
+│   │   └── nginx_webservers
+│   │       └── vars.yml
+│   └── hosts
+├── qa
+│   ├── group_vars
+│   │   ├── all
+│   │   │   └── vars.yml
+│   │   └── nginx_webservers
+│   │       └── vars.yml
+│   └── hosts
+└── uat
+    ├── group_vars
+    │   ├── all
+    │   │   └── vars.yml
+    │   └── nginx_webservers
+    │       └── vars.yml
+    └── hosts
+group_vars
+└── all
+    └── vars.yml
+```
+
+In this layout we see how we define different environments by just wrapping our single inventory into a folder. Variables that apply to all environments can be specified in the `group_vars/all/vars.yml` that is located in the same hierarchy as the `inventory` directory. We can then specify variables specific for each environment, but for all groups, in the files `inventory/[prod, qa, or uat]/group_vars/all/vars.yml` (maybe different credentials per environment). Similarly, we can define variables specifically for the hostgroups, in the files `inventory/[prod, qa, or uat]/group_vars/[hostgroup]/vars.yml`. We could also add the `hostvars` in parallel to the `group_vars`, but since that's a bit tedious, you might want to automate that task.
+
+A variation of this layout is the following:
+```
+inventory
+├── group_vars
+│   ├── all
+│   │   └── vars.yml
+│   ├── nginx_webservers
+│   │   └── vars.yml
+│   ├── prod
+│   │   └── vars.yml
+│   ├── qa
+│   │   └── vars.yml
+│   └── uat
+│       └── vars.yml
+├── hosts-prod
+├── hosts-qa
+└── hosts-uat
+group_vars
+└── all
+    └── vars.yml
+```
+
+At the end of the day the decision of the type of inventory will depend on the actual problem you're trying to solve. Just keep in mind that this is very flexible, and that the variable precedence levels can come very handy.
+
+#### Inventory layout 2: multiple environments, multiple customers or deployments
+
+Consider the following inventory layout:
+```
+inventory/
+├── customer1
+│   ├── group_vars
+│   │   ├── all
+│   │   │   └── vars.yml
+│   │   ├── nginx_webservers
+│   │   │   └── vars.yml
+│   │   ├── prod
+│   │   │   └── vars.yml
+│   │   ├── qa
+│   │   │   └── vars.yml
+│   │   └── uat
+│   │       └── vars.yml
+│   ├── hosts-prod
+│   ├── hosts-qa
+│   └── hosts-uat
+├── customer2
+│   ├── group_vars
+│   │   ├── all
+│   │   │   └── vars.yml
+│   │   ├── nginx_webservers
+│   │   │   └── vars.yml
+│   │   ├── prod
+│   │   │   └── vars.yml
+│   │   ├── qa
+│   │   │   └── vars.yml
+│   │   └── uat
+│   │       └── vars.yml
+│   ├── hosts-prod
+│   ├── hosts-qa
+│   └── hosts-uat
+└── customer3
+    ├── group_vars
+    │   ├── all
+    │   │   └── vars.yml
+    │   ├── nginx_webservers
+    │   │   └── vars.yml
+    │   ├── prod
+    │   │   └── vars.yml
+    │   ├── qa
+    │   │   └── vars.yml
+    │   └── uat
+    │       └── vars.yml
+    ├── hosts-prod
+    ├── hosts-qa
+    └── hosts-uat
+group_vars
+└── all
+    └── vars.yml
+
+```
+
+It is pretty much the same as the last example of the multiple environments section, just with another level of wrapping. 
+
+<br/>
+<br/>
+
+For our purposes we'll keep using the simple layout: a single customer, single environment:
+```
+inventory
+├── group_vars
+│   ├── all
+│   │   └── vars.yml
+│   └── nginx_webservers
+│       └── vars.yml
+└── hosts
+group_vars
+└── all
+    └── vars.yml
+```
+
+Let's talk about secrets now!
+
 
 
 
