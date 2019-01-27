@@ -26,7 +26,8 @@ build: clean
 	sed 's/PLC_LAST_UPDATED/$(shell $(CURRENT_DATE))/g' $(SOURCEDIR)/_themes/sphinx_rtd_theme/layout.html.template > $(SOURCEDIR)/_themes/sphinx_rtd_theme/layout.html
 	@$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 	${INFO} "Copying generate html to 'docs'..."
-	mv $(BUILDDIR)/html docs
+	@mv $(BUILDDIR)/html docs
+	@touch docs/.nojekyll 
 
 
 .PHONY: help Makefile clean build
