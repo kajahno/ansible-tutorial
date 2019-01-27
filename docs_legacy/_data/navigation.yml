@@ -1,0 +1,35 @@
+---
+- name: "Part 1: Prerequisites"
+  link: /
+  children:
+- name: "Part 2: Best practices and first playbook"
+  link: /2/prerequisites.html
+  children:
+    - name: "Create a role to provision the popular nginx webserver with a sample page"
+      link: /2.1/first-role.html
+    - name: "Create a playbook to use the role"
+      link: /2.2/first-playbook.html
+- name: "Part 3: Handling the inventory"
+  link: /3/inventory.html
+  children:
+    - name: "Variable precedence"
+      link: /3.1/variable-precedence.html
+    - name: "Inventory layouts"
+      link: /3.2/inventory-layouts.html
+    - name: "Vaults and secrets"
+      link: /3.3/vaults-and-secrets.html
+- name: "Part 4: Create a custom module"
+  link: /4/custom-module.html
+  children:
+    - name: "Create a custom module"
+      link: /4.1/custom-module.html
+- name: "Part 5: Create custom filter plugin"
+  link: /5/custom-filter-plugin.html
+  children:
+- name: "Part 6: Create custom lookup plugin"
+  link: /6/custom-lookup-plugin.html
+  children:
+- name: "Part 7: Include Molecule tests for the role"
+  link: /7/include-molecule.html
+  children:
+

@@ -1,0 +1,548 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta class="swiftype" name="published_at" data-type="date" content="2017-12-13" /> 
+  <meta class="swiftype" name="version" data-type="string" content="3.2.2">
+
+  <!-- Google Tag Manager Data Layer -->
+  <script>
+   dataLayer = [];
+  </script>
+  <!-- End Google Tag Manager Data Layer -->
+
+  
+  <title>Best practices and first playbook &mdash; Ansible Quickstart Tutorial 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'../../',
+        VERSION:'0.0.1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
+
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Handling the inventory" href="2_inventory.html" />
+    <link rel="prev" title="Prerequisites" href="../prerequisites/prerequisites.html" /> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PSB293" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PSB293');</script>
+  <!-- End Google Tag Manager -->
+
+    <div class="DocSite-globalNav ansibleNav">
+        <ul>
+            <li><a href="https://docs.ansible.com/ansible/latest/index.html" target="_blank">official documentation</a></li>
+            <li><a href="https://kajahno.me/" target="_blank">about me</a></li>
+        </ul>
+    </div>
+
+  <a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+      
+    <!-- <img class="DocSiteNav-logo"
+      src="../../_static/images/logo_invert.png"
+      alt="Ansible Logo"> -->
+    <!-- <div class="DocSiteNav-title">
+      kajahno
+    </div> -->
+  </a>
+
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+      <div style="background-color:#5bbdbf;height=80px;margin:'auto auto auto auto'">
+        <a class="DocSiteProduct-header DocSiteProduct-header--core" href="/">
+            <div class="DocSiteProduct-productName">
+                <div class="DocSiteProduct-logoText">
+                    Quickstart Tutorial  
+                    <div class="DocSiteProduct-CurrentVersion" align="right">
+                      Updated on Jan 27, 2019
+                    </div>
+                </div>
+            </div>
+        </a>
+
+          <!-- <div class="DocSiteProduct-CheckVersionPara">For previous versions, see the  <a class="DocSiteProduct-versionheader" href="/#coreversionselect">documentation archive.</a></div> -->
+      </div>
+
+      <div class="wy-side-nav-search" style="background-color#5bbdbf;height=80px;margin:'auto auto auto auto'">
+      <!-- <a href="../../index.html" class="icon icon-home"> Ansible Quickstart Tutorial</a> -->
+      
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+    </div>
+
+    
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Prerequisites</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../prerequisites/prerequisites.html">Prerequisites</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../prerequisites/prerequisites.html#create-a-virtual-environment">Create a virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../prerequisites/prerequisites.html#activate-a-virtual-environment">Activate a virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../prerequisites/prerequisites.html#install-ansible">Install Ansible</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../prerequisites/prerequisites.html#install-vagrant">Install Vagrant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../prerequisites/prerequisites.html#references">References</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Best practices and first playbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-role-to-provision-the-popular-nginx-webserver-with-a-sample-page">Create a role to provision the popular nginx webserver with a sample page</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-directory-structure">Basic directory structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#main-yml">main.yml</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-playbook-to-use-the-role">Create a playbook to use the role</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-server-using-vagrant">Creating a server using Vagrant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-inventory-file">Simple inventory file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2_inventory.html">Handling the inventory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="2_inventory.html#introdution">Introdution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="2_inventory.html#hosts-management">Hosts management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2_inventory.html#variables-management">Variables management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="2_inventory.html#variable-precedence">Variable precedence</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="2_inventory.html#clean-up-the-inventory-file">Clean-up the inventory file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2_inventory.html#create-the-variable-files">Create the variable files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2_inventory.html#run-the-playbook-again">Run the playbook again</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="2_inventory.html#multiple-inventories">Multiple inventories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="2_inventory.html#inventory-layout-1-multiple-environments">Inventory layout 1: multiple environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2_inventory.html#inventory-layout-2-multiple-environments-multiple-customers-or-deployments">Inventory layout 2: multiple environments, multiple customers or deployments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="2_inventory.html#vault-and-secrets">Vault and secrets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="2_inventory.html#encrypt-file">Encrypt file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2_inventory.html#decrypt-file">Decrypt file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2_inventory.html#same-run-command-for-the-playbook">Same run command for the playbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2_inventory.html#run-asking-for-the-secrets-password">Run asking for the secrets password</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2_inventory.html#run-using-a-file-with-the-vault-password-in-it">Run using a file with the vault password in it</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2_inventory.html#run-using-the-vault-password-file-environment-variable">Run using the vault password file environment variable</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+            <!-- changeable widget -->
+
+      </div>
+      &nbsp;
+    </nav>
+      </div>
+
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Ansible Quickstart Tutorial</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+
+          <ul class="wy-breadcrumbs">
+  <li><a href="../../index.html">Docs</a> &raquo;</li>
+  <li><a href="">Best practices and first playbook</a></li>
+  
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/kajahno/ansible-tutorial/md/tutorial/1_playbook.md?description=%3C!---%20Your%20description%20here%20--%3E%0A%0A%2Blabel:%20docsite_pr" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  
+</ul>
+<hr/>
+
+          <div id="page-content">
+          
+  <!-- * Part 1: Prerequisites
+    * Install all the required software for this tutorial
+* Part 2: best practices and first playbook
+    * Create a role to provision the popular nginx webserver with a sample page
+    * Create a playbook to use the role
+* Part 3: handling the inventory
+    * Variable precedence
+    * Multiple environments
+    * Vault and secrets
+* Part 3: getting to know the internals
+    * Create a custom module
+* Part 4: make custom components 1
+    * Create a custom filter plugin
+* Part 5: make custom components 2
+    * Create a custom lookup plugin
+* Part 6: make roles that never fail
+    * Add tests to our role --><div class="section" id="best-practices-and-first-playbook">
+<h1>Best practices and first playbook<a class="headerlink" href="#best-practices-and-first-playbook" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>Create a directory somewhere in your filesystem named <code class="docutils literal notranslate"><span class="pre">ansible</span></code>. For the purposes of the tutorial I’ll assume it was created on <code class="docutils literal notranslate"><span class="pre">~/ansible</span></code>.</p>
+<p>Change directories to the previously created directory.</p>
+</div>
+<div class="section" id="create-a-role-to-provision-the-popular-nginx-webserver-with-a-sample-page">
+<h2>Create a role to provision the popular nginx webserver with a sample page<a class="headerlink" href="#create-a-role-to-provision-the-popular-nginx-webserver-with-a-sample-page" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="basic-directory-structure">
+<h3>Basic directory structure<a class="headerlink" href="#basic-directory-structure" title="Permalink to this headline">¶</a></h3>
+<p>Following the provided example in the <a class="reference external" href="https://docs.ansible.com/ansible/2.7/user_guide/playbooks_reuse_roles.html">documentation</a>, the directory structure of an ansible project can be as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">site</span><span class="o">.</span><span class="n">yml</span>
+<span class="n">webservers</span><span class="o">.</span><span class="n">yml</span>
+<span class="n">fooservers</span><span class="o">.</span><span class="n">yml</span>
+<span class="n">roles</span><span class="o">/</span>
+   <span class="n">common</span><span class="o">/</span>
+     <span class="n">tasks</span><span class="o">/</span>
+     <span class="n">handlers</span><span class="o">/</span>
+     <span class="n">files</span><span class="o">/</span>
+     <span class="n">templates</span><span class="o">/</span>
+     <span class="nb">vars</span><span class="o">/</span>
+     <span class="n">defaults</span><span class="o">/</span>
+     <span class="n">meta</span><span class="o">/</span>
+   <span class="n">webservers</span><span class="o">/</span>
+     <span class="n">tasks</span><span class="o">/</span>
+     <span class="n">defaults</span><span class="o">/</span>
+     <span class="n">meta</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Focusing on the <code class="docutils literal notranslate"><span class="pre">roles</span></code> directory for a moment, let’s point out some things:</p>
+<ul>
+<li><p class="first">The minimum that you need for any Ansible roles, using the role <code class="docutils literal notranslate"><span class="pre">common</span></code> as an example, is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~/</span><span class="n">ansible</span><span class="o">/</span><span class="n">roles</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">tasks</span><span class="o">/</span><span class="n">main</span><span class="o">.</span><span class="n">yml</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">The file <code class="docutils literal notranslate"><span class="pre">tasks/main.yml</span></code> will be the entrypoint for the role.</p>
+</li>
+<li><p class="first">I usually start filling up this <code class="docutils literal notranslate"><span class="pre">main.yml</span></code> file and then create all other files when necessary.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="main-yml">
+<h3>main.yml<a class="headerlink" href="#main-yml" title="Permalink to this headline">¶</a></h3>
+<p>We will name the role to be created as <code class="docutils literal notranslate"><span class="pre">webservers-nginx</span></code>. To proceed please follow below.</p>
+<ul>
+<li><p class="first">Create the file <code class="docutils literal notranslate"><span class="pre">webservers-nginx/tasks/main.yml</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">webservers</span><span class="o">-</span><span class="n">nginx</span><span class="o">/</span><span class="n">roles</span><span class="o">/</span><span class="n">tasks</span><span class="o">/</span>
+<span class="n">touch</span> <span class="n">webservers</span><span class="o">-</span><span class="n">nginx</span><span class="o">/</span><span class="n">roles</span><span class="o">/</span><span class="n">tasks</span><span class="o">/</span><span class="n">main</span><span class="o">.</span><span class="n">yml</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Include the following content (careful with the spaces: YAML is very sensitive with this)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+
+<span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">install</span> <span class="n">the</span> <span class="n">nginx</span> <span class="n">reverse</span> <span class="n">proxy</span>
+  <span class="n">apt</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">nginx</span>
+    <span class="n">update_cache</span><span class="p">:</span> <span class="n">yes</span>
+
+<span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">enable</span> <span class="n">nginx</span> <span class="n">service</span>
+  <span class="n">systemd</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">nginx</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">started</span>
+    <span class="n">enabled</span><span class="p">:</span> <span class="n">yes</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>In this example we’re just installing the popular Nginx, starting it, and enabling the service at boot time (so if we restart the destination host, this service will be autostarted).</p>
+</div>
+</div>
+<div class="section" id="create-a-playbook-to-use-the-role">
+<h2>Create a playbook to use the role<a class="headerlink" href="#create-a-playbook-to-use-the-role" title="Permalink to this headline">¶</a></h2>
+<p>Playbooks are the next level of abstraction towards the infrastructure. They can include tasks, and most importantly, the roles.</p>
+<p>Until now we don’t have any hosts to use as target to run the playbook that will have included the role <code class="docutils literal notranslate"><span class="pre">webservers-nginx</span></code>, that’s about to change.</p>
+<div class="section" id="creating-a-server-using-vagrant">
+<h3>Creating a server using Vagrant<a class="headerlink" href="#creating-a-server-using-vagrant" title="Permalink to this headline">¶</a></h3>
+<p>With Vagrant we can spin up virtual machines very easy. In this case we will spin up a particular Ubuntu Xenial image. See below:</p>
+<ul>
+<li><p class="first">Initialize vagrant with an ubuntu image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vagrant</span> <span class="n">init</span> <span class="n">bento</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">-</span><span class="mf">16.04</span> <span class="o">--</span><span class="n">minimal</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>This will create the file <code class="docutils literal notranslate"><span class="pre">Vagrantfile</span></code>.</p>
+</div></blockquote>
+</li>
+<li><p class="first">Open the autogenerated <code class="docutils literal notranslate"><span class="pre">Vagrantfile</span></code>, and make sure the content looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span> <span class="n">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;bento/ubuntu-16.04&quot;</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;forwarded_port&quot;</span><span class="p">,</span> <span class="n">guest</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="n">host</span><span class="p">:</span> <span class="mi">8080</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Start the virtual machine</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vagrant</span> <span class="n">up</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Since this will take a while, time to get a cup of tea</p>
+</div></blockquote>
+</li>
+</ul>
+<p>The steps above will help to create a local test infrastructure that we can use to run our Ansible playbooks against. This helps in the way that you don’t need to target your important infrastructure to test the playbooks (careful with this!).</p>
+<p>The flavor of ubuntu downloaded can be seen in <a class="reference external" href="https://app.vagrantup.com/bento/boxes/ubuntu-16.04">here</a>. This image by default has the following ssh credentials:</p>
+<ul class="simple">
+<li>Username: <code class="docutils literal notranslate"><span class="pre">vagrant</span></code></li>
+<li>Password: <code class="docutils literal notranslate"><span class="pre">vagrant</span></code></li>
+</ul>
+<p>After generating the image, we configure an extra port to be forwarded (see Vagrant <a class="reference external" href="https://www.vagrantup.com/docs/networking/forwarded_ports.html">forwarded ports</a>). This will enable us to:</p>
+<ul class="simple">
+<li>Access the vagrant host via <code class="docutils literal notranslate"><span class="pre">ssh</span></code> by doing <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">localhost</span> <span class="pre">-p</span> <span class="pre">2222</span></code>,so we don’t need to know the IP of the host that was just created. If you know the IP that was created then the traditional <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">[user]&#64;[hostname</span> <span class="pre">or</span> <span class="pre">IP]</span></code> will work as well.</li>
+<li>Access the port <code class="docutils literal notranslate"><span class="pre">80</span></code> inside the virtual machine by doing <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">localhost:8080</span></code>. Similarly, if you know the IP that was created the traditional <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">[hostname</span> <span class="pre">or</span> <span class="pre">IP]</span> <span class="pre">80</span></code> will work as well. We will mainly access this from the local browser.</li>
+</ul>
+<p>Behind the scenes Vagrant is using <a class="reference external" href="https://www.virtualbox.org/wiki/VirtualBox">Virtualbox</a> as a default virtualizer, and will install it if you don’t already have it.</p>
+</div>
+<div class="section" id="simple-inventory-file">
+<h3>Simple inventory file<a class="headerlink" href="#simple-inventory-file" title="Permalink to this headline">¶</a></h3>
+<p>The playbook we are going to create needs an inventory file, therefore we will create a tiny one and put the minimun content (this will be covered better in the next chapter).</p>
+<ul>
+<li><p class="first">Create the inventor file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">inventory</span>
+<span class="n">touch</span> <span class="n">inventory</span><span class="o">/</span><span class="n">hosts</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Include the following content:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple inventory</span>
+<span class="p">[</span><span class="n">nginx_webservers</span><span class="p">]</span>
+<span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span>
+
+
+<span class="p">[</span><span class="nb">all</span><span class="p">:</span><span class="nb">vars</span><span class="p">]</span>
+<span class="n">ansible_connection</span><span class="o">=</span><span class="n">ssh</span>
+<span class="n">ansible_ssh_port</span><span class="o">=</span><span class="mi">2222</span>
+<span class="n">ansible_user</span><span class="o">=</span><span class="n">vagrant</span>
+<span class="n">ansible_ssh_pass</span><span class="o">=</span><span class="n">vagrant</span>
+<span class="n">ansible_ssh_common_args</span><span class="o">=</span><span class="s1">&#39;-o StrictHostKeyChecking=no&#39;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<br/>
+<br/>
+After we have the inventory file, and some infrastruture spun up, we are ready to create our first playbook.<ul>
+<li><p class="first">Create the file <code class="docutils literal notranslate"><span class="pre">webservers.yml</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">touch</span> <span class="n">webservers</span><span class="o">.</span><span class="n">yml</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Include the following content in the file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">nginx_webservers</span>
+  <span class="n">become</span><span class="p">:</span> <span class="n">yes</span>
+  <span class="n">tasks</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">include_role</span><span class="p">:</span>
+      <span class="n">name</span><span class="p">:</span> <span class="n">webservers</span><span class="o">-</span><span class="n">nginx</span>    
+</pre></div>
+</div>
+</li>
+<li><p class="first">Run the playbook:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ansible</span><span class="o">-</span><span class="n">playbook</span> <span class="o">-</span><span class="n">i</span> <span class="n">inventory</span><span class="o">/</span><span class="n">hosts</span> <span class="n">webservers</span><span class="o">.</span><span class="n">yml</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>The output of running the playbook should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PLAY</span> <span class="p">[</span><span class="n">nginx_webservers</span><span class="p">]</span> <span class="o">**************************************************************************************************************************************************************************************************************</span>
+
+<span class="n">TASK</span> <span class="p">[</span><span class="n">Gathering</span> <span class="n">Facts</span><span class="p">]</span> <span class="o">***************************************************************************************************************************************************************************************************************</span>
+<span class="n">ok</span><span class="p">:</span> <span class="p">[</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">]</span>
+
+<span class="n">TASK</span> <span class="p">[</span><span class="n">include_role</span> <span class="p">:</span> <span class="n">webservers</span><span class="o">-</span><span class="n">nginx</span><span class="p">]</span> <span class="o">***********************************************************************************************************************************************************************************************</span>
+
+<span class="n">TASK</span> <span class="p">[</span><span class="n">webservers</span><span class="o">-</span><span class="n">nginx</span> <span class="p">:</span> <span class="n">install</span> <span class="n">the</span> <span class="n">nginx</span> <span class="n">reverse</span> <span class="n">proxy</span><span class="p">]</span> <span class="o">****************************************************************************************************************************************************************************</span>
+<span class="n">changed</span><span class="p">:</span> <span class="p">[</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">]</span>
+
+<span class="n">TASK</span> <span class="p">[</span><span class="n">webservers</span><span class="o">-</span><span class="n">nginx</span> <span class="p">:</span> <span class="n">enable</span> <span class="n">nginx</span> <span class="n">service</span><span class="p">]</span> <span class="o">***************************************************************************************************************************************************************************************</span>
+<span class="n">ok</span><span class="p">:</span> <span class="p">[</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">]</span>
+
+<span class="n">PLAY</span> <span class="n">RECAP</span> <span class="o">***************************************************************************************************************************************************************************************************************************</span>
+<span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span>                  <span class="p">:</span> <span class="n">ok</span><span class="o">=</span><span class="mi">3</span>    <span class="n">changed</span><span class="o">=</span><span class="mi">1</span>    <span class="n">unreachable</span><span class="o">=</span><span class="mi">0</span>    <span class="n">failed</span><span class="o">=</span><span class="mi">0</span>   
+</pre></div>
+</div>
+<p>To confirm everything has worked fine, we can access http://localhost:8080 .this should display the popular Nginx page:</p>
+<p><img alt="../../_images/2_1_nginx.png" src="../../_images/2_1_nginx.png" />Nginx welcome page</p>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.python-guide.org/dev/virtualenvs/">Python virtual environments</a></li>
+<li><a class="reference external" href="https://www.vagrantup.com/">Vagrant</a></li>
+<li><a class="reference external" href="https://app.vagrantup.com/boxes/search">Vagrant cloud</a></li>
+<li><a class="reference external" href="https://www.ansible.com/how-ansible-works/">Learn more about Ansible</a></li>
+<li><a class="reference external" href="http://docs.ansible.com/">Ansible documentation</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          <div id="search-results"><gcse:searchresults-only></div>
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="2_inventory.html" class="btn btn-neutral float-right" title="Handling the inventory"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../prerequisites/prerequisites.html" class="btn btn-neutral" title="Prerequisites"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','yABGvz2N8PwcwBxyfzUc','2.0.0');
+</script>
+
+  <p>
+  Last updated on Jan 27, 2019. <br/>
+  </p>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+<!-- begin analytics -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "standard-page"]);
+        (function(d,s,i,r) {
+        if (d.getElementById(i)){return;}
+        var n = d.createElement(s),e = document.getElementsByTagName(s)[0];
+        n.id=i;n.src = '//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/330046.js';
+        e.parentNode.insertBefore(n, e);
+        })(document, "script", "hs-analytics",300000);
+</script>
+<!-- end analytics -->
+<script type="text/javascript">
+if (("undefined" !== typeof _satellite) && ("function" === typeof _satellite.pageBottom)) {
+_satellite.pageBottom();
+}
+</script>
+</body>
+</html>

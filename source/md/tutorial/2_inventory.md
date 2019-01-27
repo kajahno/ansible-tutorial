@@ -1,31 +1,4 @@
-# Ansible tutorial
-
-This will be a crash course on learning how to set up and use Ansible by examples. 
-
-Even though all the information will be provided here, I strongly recommend to follow the tutorial for a better experience. 
-
-This series is divided into the following parts:
-
-* Part 1: Prerequisites
-    * Install all the required software for this tutorial
-* Part 2: best practices and first playbook
-    * Create a role to provision the popular nginx webserver with a sample page
-    * Create a playbook to use the role
-* Part 3: handling the inventory
-    * Variable precedence
-    * Multiple environments
-    * Vault and secrets
-* Part 4: getting to know the internals
-    * Create a custom module
-* Part 5: make custom components 1
-    * Create a custom filter plugin
-* Part 6: make custom components 2
-    * Create a custom lookup plugin
-* Part 7: make roles that never fail
-    * Add tests to our role
-
-
-## Part 3: handling the inventory
+## Handling the inventory
 
 ### Introdution
 
@@ -388,12 +361,3 @@ Until here you have the knowledge to spin up Ansible, and configure it according
 
 Let's get to know more about Ansible in the next modules!
 
-
-## [Next up -> Part 4: getting to know the internals](#)
-
-### References
-- [Python virtual environments](https://docs.python-guide.org/dev/virtualenvs/)
-- [Vagrant](https://www.vagrantup.com/)
-- [Vagrant cloud](https://app.vagrantup.com/boxes/search)
-- [Learn more about Ansible](https://www.ansible.com/how-ansible-works/)
-- [Ansible documentation](http://docs.ansible.com/)

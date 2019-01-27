@@ -1,12 +1,5 @@
-# Ansible tutorial
 
-This will be a crash course on learning how to set up and use Ansible by examples. 
-
-Even though all the information will be provided here, I strongly recommend to follow the tutorial for a better experience. 
-
-This series is divided into the following parts:
-
-* Part 1: Prerequisites
+<!-- * Part 1: Prerequisites
     * Install all the required software for this tutorial
 * Part 2: best practices and first playbook
     * Create a role to provision the popular nginx webserver with a sample page
@@ -22,10 +15,9 @@ This series is divided into the following parts:
 * Part 5: make custom components 2
     * Create a custom lookup plugin
 * Part 6: make roles that never fail
-    * Add tests to our role
+    * Add tests to our role -->
 
-
-## Part 2: best practices and first playbook
+## Best practices and first playbook
 
 ### Prerequisites
 
@@ -204,7 +196,6 @@ To confirm everything has worked fine, we can access http://localhost:8080 .this
 ![Nginx welcome page](img/2_1_nginx.png)
 
 
-## [Next up -> Part 3: handling the inventory](#)
 
 ### References
 - [Python virtual environments](https://docs.python-guide.org/dev/virtualenvs/)

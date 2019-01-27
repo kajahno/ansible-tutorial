@@ -1,0 +1,414 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta class="swiftype" name="published_at" data-type="date" content="2017-12-13" /> 
+  <meta class="swiftype" name="version" data-type="string" content="3.2.2">
+
+  <!-- Google Tag Manager Data Layer -->
+  <script>
+   dataLayer = [];
+  </script>
+  <!-- End Google Tag Manager Data Layer -->
+
+  
+  <title>Prerequisites &mdash; Ansible Quickstart Tutorial 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'../../',
+        VERSION:'0.0.1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
+
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Best practices and first playbook" href="../tutorial/1_playbook.html" />
+    <link rel="prev" title="Ansible Quickstart Tutorial" href="../../index.html" /> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PSB293" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PSB293');</script>
+  <!-- End Google Tag Manager -->
+
+    <div class="DocSite-globalNav ansibleNav">
+        <ul>
+            <li><a href="https://docs.ansible.com/ansible/latest/index.html" target="_blank">official documentation</a></li>
+            <li><a href="https://kajahno.me/" target="_blank">about me</a></li>
+        </ul>
+    </div>
+
+  <a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+      
+    <!-- <img class="DocSiteNav-logo"
+      src="../../_static/images/logo_invert.png"
+      alt="Ansible Logo"> -->
+    <!-- <div class="DocSiteNav-title">
+      kajahno
+    </div> -->
+  </a>
+
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+      <div style="background-color:#5bbdbf;height=80px;margin:'auto auto auto auto'">
+        <a class="DocSiteProduct-header DocSiteProduct-header--core" href="/">
+            <div class="DocSiteProduct-productName">
+                <div class="DocSiteProduct-logoText">
+                    Quickstart Tutorial  
+                    <div class="DocSiteProduct-CurrentVersion" align="right">
+                      Updated on Jan 27, 2019
+                    </div>
+                </div>
+            </div>
+        </a>
+
+          <!-- <div class="DocSiteProduct-CheckVersionPara">For previous versions, see the  <a class="DocSiteProduct-versionheader" href="/#coreversionselect">documentation archive.</a></div> -->
+      </div>
+
+      <div class="wy-side-nav-search" style="background-color#5bbdbf;height=80px;margin:'auto auto auto auto'">
+      <!-- <a href="../../index.html" class="icon icon-home"> Ansible Quickstart Tutorial</a> -->
+      
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+    </div>
+
+    
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Prerequisites</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Prerequisites</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-virtual-environment">Create a virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#activate-a-virtual-environment">Activate a virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-ansible">Install Ansible</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-vagrant">Install Vagrant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/1_playbook.html">Best practices and first playbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/1_playbook.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/1_playbook.html#create-a-role-to-provision-the-popular-nginx-webserver-with-a-sample-page">Create a role to provision the popular nginx webserver with a sample page</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/1_playbook.html#basic-directory-structure">Basic directory structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/1_playbook.html#main-yml">main.yml</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/1_playbook.html#create-a-playbook-to-use-the-role">Create a playbook to use the role</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/1_playbook.html#creating-a-server-using-vagrant">Creating a server using Vagrant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/1_playbook.html#simple-inventory-file">Simple inventory file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/1_playbook.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/2_inventory.html">Handling the inventory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/2_inventory.html#introdution">Introdution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#hosts-management">Hosts management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#variables-management">Variables management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/2_inventory.html#variable-precedence">Variable precedence</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#clean-up-the-inventory-file">Clean-up the inventory file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#create-the-variable-files">Create the variable files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#run-the-playbook-again">Run the playbook again</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/2_inventory.html#multiple-inventories">Multiple inventories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#inventory-layout-1-multiple-environments">Inventory layout 1: multiple environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#inventory-layout-2-multiple-environments-multiple-customers-or-deployments">Inventory layout 2: multiple environments, multiple customers or deployments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/2_inventory.html#vault-and-secrets">Vault and secrets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#encrypt-file">Encrypt file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#decrypt-file">Decrypt file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#same-run-command-for-the-playbook">Same run command for the playbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#run-asking-for-the-secrets-password">Run asking for the secrets password</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#run-using-a-file-with-the-vault-password-in-it">Run using a file with the vault password in it</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#run-using-the-vault-password-file-environment-variable">Run using the vault password file environment variable</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+            <!-- changeable widget -->
+
+      </div>
+      &nbsp;
+    </nav>
+      </div>
+
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Ansible Quickstart Tutorial</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+
+          <ul class="wy-breadcrumbs">
+  <li><a href="../../index.html">Docs</a> &raquo;</li>
+  <li><a href="">Prerequisites</a></li>
+  
+    <li class="wy-breadcrumbs-aside">
+      <a href="https://github.com/kajahno/ansible-tutorial/md/prerequisites/prerequisites.md?description=%3C!---%20Your%20description%20here%20--%3E%0A%0A%2Blabel:%20docsite_pr" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  
+</ul>
+<hr/>
+
+          <div id="page-content">
+          
+  <div class="section" id="prerequisites">
+<h1>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, and the upcoming tutorials it will be assumed that Ansible is used inside a Python Virtual Environment. The advantage of this is that we can access several versions of Ansible, and install more packages on top of it.</p>
+<p>I wrote this using Linux Ubuntu, but the steps should be transferable to any OS you use.</p>
+<div class="section" id="create-a-virtual-environment">
+<h2>Create a virtual environment<a class="headerlink" href="#create-a-virtual-environment" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Ensure <code class="docutils literal notranslate"><span class="pre">pip</span></code> is installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">pip</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Ensure <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> is installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenv</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create a virtual environment using python3, under <code class="docutils literal notranslate"><span class="pre">~/.venv</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>virtualenv -p $( which python3 ) .venv
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="activate-a-virtual-environment">
+<h2>Activate a virtual environment<a class="headerlink" href="#activate-a-virtual-environment" title="Permalink to this headline">¶</a></h2>
+<p>You will be doing this quite often, so please keep this command handy:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">.</span><span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+<p>After this you will notice how the Linux prompt has changed, adding <code class="docutils literal notranslate"><span class="pre">(.venv)</span></code> at the beginning.</p>
+<p>To deactivate the virtual environment simply run <code class="docutils literal notranslate"><span class="pre">deactivate</span></code>. After this you will notice how the Linux prompt returns to its original state.</p>
+<p><em>Note</em>: for the purpose of this tutorial leave the virtual environment activated at all times.</p>
+</div>
+<div class="section" id="install-ansible">
+<h2>Install Ansible<a class="headerlink" href="#install-ansible" title="Permalink to this headline">¶</a></h2>
+<p>Get the latest stable release (2.7 at the moment of this guide):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ansible</span>
+</pre></div>
+</div>
+<p>Verify Ansible has been intalled:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ansible</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-vagrant">
+<h2>Install Vagrant<a class="headerlink" href="#install-vagrant" title="Permalink to this headline">¶</a></h2>
+<p>We will use vagrant to quicly spin up virtual machines, using Virtual box as a driver (Vagrant will use it by default).</p>
+<ul>
+<li><p class="first">Download the latest version from the <a class="reference external" href="https://releases.hashicorp.com/vagrant/">download page</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">releases</span><span class="o">.</span><span class="n">hashicorp</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">vagrant</span><span class="o">/</span><span class="mf">2.2</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">vagrant_2</span><span class="o">.</span><span class="mf">2.0</span><span class="n">_linux_amd64</span><span class="o">.</span><span class="n">zip</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Unzip the downloaded file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">unzip</span> <span class="n">vagrant_2</span><span class="o">.</span><span class="mf">2.0</span><span class="n">_linux_amd64</span><span class="o">.</span><span class="n">zip</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Add to the user binaries path</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mv</span> <span class="n">vagrant</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Verify Vagrant has been installed</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vagrant</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>this should return: <code class="docutils literal notranslate"><span class="pre">Vagrant</span> <span class="pre">2.2.0</span></code></p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.python-guide.org/dev/virtualenvs/">Python virtual environments</a></li>
+<li><a class="reference external" href="https://www.vagrantup.com/">Vagrant</a></li>
+<li><a class="reference external" href="https://app.vagrantup.com/boxes/search">Vagrant cloud</a></li>
+<li><a class="reference external" href="https://www.ansible.com/how-ansible-works/">Learn more about Ansible</a></li>
+<li><a class="reference external" href="http://docs.ansible.com/">Ansible documentation</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          <div id="search-results"><gcse:searchresults-only></div>
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="../tutorial/1_playbook.html" class="btn btn-neutral float-right" title="Best practices and first playbook"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../index.html" class="btn btn-neutral" title="Ansible Quickstart Tutorial"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','yABGvz2N8PwcwBxyfzUc','2.0.0');
+</script>
+
+  <p>
+  Last updated on Jan 27, 2019. <br/>
+  </p>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+<!-- begin analytics -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "standard-page"]);
+        (function(d,s,i,r) {
+        if (d.getElementById(i)){return;}
+        var n = d.createElement(s),e = document.getElementsByTagName(s)[0];
+        n.id=i;n.src = '//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/330046.js';
+        e.parentNode.insertBefore(n, e);
+        })(document, "script", "hs-analytics",300000);
+</script>
+<!-- end analytics -->
+<script type="text/javascript">
+if (("undefined" !== typeof _satellite) && ("function" === typeof _satellite.pageBottom)) {
+_satellite.pageBottom();
+}
+</script>
+</body>
+</html>
