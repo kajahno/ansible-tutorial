@@ -25,9 +25,16 @@ build: clean
 	sed 's/PLC_LAST_UPDATED/$(shell $(CURRENT_DATE))/g' $(SOURCEDIR)/_themes/sphinx_rtd_theme/footer.html.template > $(SOURCEDIR)/_themes/sphinx_rtd_theme/footer.html
 	sed 's/PLC_LAST_UPDATED/$(shell $(CURRENT_DATE))/g' $(SOURCEDIR)/_themes/sphinx_rtd_theme/layout.html.template > $(SOURCEDIR)/_themes/sphinx_rtd_theme/layout.html
 	@$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
-	${INFO} "Copying generate html to 'docs'..."
+	${INFO} "Copying generate html to 'docs' and tidy up filenames..."
 	@mv $(BUILDDIR)/html docs
-	@touch docs/.nojekyll 
+	@mv docs/_images docs/images
+	@find docs -type f -regex '.*\.html\|.*\.js' -print0 | xargs -0 sed -i 's/_images/images/g'
+	@mv docs/_sources docs/sources
+	@find docs -type f -regex '.*\.html\|.*\.js' -print0 | xargs -0 sed -i 's/_sources/sources/g'
+	@mv docs/_static docs/static
+	@find docs -type f -regex '.*\.html\|.*\.js' -print0 | xargs -0 sed -i 's/_static/static/g'
+	${INFO} "Build finished"
+
 
 
 .PHONY: help Makefile clean build
