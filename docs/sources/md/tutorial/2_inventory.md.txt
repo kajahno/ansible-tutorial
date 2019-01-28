@@ -353,7 +353,7 @@ Run the playbook without specifying the vault password file:
 ansible-playbook -i inventory/hosts webservers.yml
 ```
 
-The playbook should run successfly.
+The playbook should run successfully.
 
 <br/>
 

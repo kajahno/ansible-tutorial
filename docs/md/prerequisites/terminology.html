@@ -152,19 +152,17 @@
 <p class="caption"><span class="caption-text">Prerequisites</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Terminology</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#modes-of-execution">Modes of execution</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#ansible-playbook">Ansible Playbook</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#inventory">Inventory</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ansible-playbook-file">Ansible Playbook file</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#plays">Plays</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#roles">Roles</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#tasks">Tasks</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module">Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ansible-playbook">Ansible Playbook</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-directory-structure">Basic directory structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inventory">Inventory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ansible-playbook-file">Ansible Playbook file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plays">Plays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#roles">Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tasks">Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module">Module</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#ansible-ad-hoc">Ansible ad-hoc</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#ansible-ad-hoc">Ansible ad-hoc</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Prerequisites</a><ul>
@@ -182,12 +180,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/1_playbook.html">Best practices and first playbook</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/1_playbook.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/1_playbook.html#create-a-role-to-provision-the-popular-nginx-webserver-with-a-sample-page">Create a role to provision the popular nginx webserver with a sample page</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tutorial/1_playbook.html#basic-directory-structure">Basic directory structure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../tutorial/1_playbook.html#main-yml">main.yml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/1_playbook.html#role-webservers-nginx">Role <code class="docutils literal notranslate"><span class="pre">webservers-nginx</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/1_playbook.html#create-a-playbook-to-use-the-role">Create a playbook to use the role</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tutorial/1_playbook.html#creating-a-server-using-vagrant">Creating a server using Vagrant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/1_playbook.html#creating-a-virtual-machine-using-vagrant">Creating a virtual machine using Vagrant</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorial/1_playbook.html#simple-inventory-file">Simple inventory file</a></li>
 </ul>
 </li>
@@ -266,42 +263,83 @@
   <div class="section" id="terminology">
 <h1>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h1>
 <p>This section will provide with the minimum theory required to work with Ansible.</p>
-<div class="section" id="modes-of-execution">
-<h2>Modes of execution<a class="headerlink" href="#modes-of-execution" title="Permalink to this headline">¶</a></h2>
-<p>There are two main modes in which Ansible can be run: ad-hoc mode and playbook mode.</p>
+<p>There are two main modes in which Ansible can be run: ad-hoc mode and playbook mode. We will make more emphasis in the playbook mode.</p>
 <div class="section" id="ansible-playbook">
-<h3>Ansible Playbook<a class="headerlink" href="#ansible-playbook" title="Permalink to this headline">¶</a></h3>
+<h2>Ansible Playbook<a class="headerlink" href="#ansible-playbook" title="Permalink to this headline">¶</a></h2>
 <p>Drawn on a diagram the architecture of Ansible running in playbook-mode would look similar to the following:</p>
 <p><img alt="../../images/ansible-arch.png" src="../../images/ansible-arch.png" /></p>
+<div class="section" id="basic-directory-structure">
+<h3>Basic directory structure<a class="headerlink" href="#basic-directory-structure" title="Permalink to this headline">¶</a></h3>
+<p>Following the provided example in the <a class="reference external" href="https://docs.ansible.com/ansible/2.7/user_guide/playbooks_reuse_roles.html">documentation</a>, the directory structure of an ansible project can be as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">site</span><span class="o">.</span><span class="n">yml</span>
+<span class="n">webservers</span><span class="o">.</span><span class="n">yml</span>
+<span class="n">fooservers</span><span class="o">.</span><span class="n">yml</span>
+<span class="n">roles</span><span class="o">/</span>
+   <span class="n">common</span><span class="o">/</span>
+     <span class="n">tasks</span><span class="o">/</span>
+     <span class="n">handlers</span><span class="o">/</span>
+     <span class="n">files</span><span class="o">/</span>
+     <span class="n">templates</span><span class="o">/</span>
+     <span class="nb">vars</span><span class="o">/</span>
+     <span class="n">defaults</span><span class="o">/</span>
+     <span class="n">meta</span><span class="o">/</span>
+   <span class="n">webservers</span><span class="o">/</span>
+     <span class="n">tasks</span><span class="o">/</span>
+     <span class="n">defaults</span><span class="o">/</span>
+     <span class="n">meta</span><span class="o">/</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="inventory">
-<h4>Inventory<a class="headerlink" href="#inventory" title="Permalink to this headline">¶</a></h4>
+<h3>Inventory<a class="headerlink" href="#inventory" title="Permalink to this headline">¶</a></h3>
 <p>Is where the list of hosts that can be targeted lives.</p>
 </div>
 <div class="section" id="ansible-playbook-file">
-<h4>Ansible Playbook file<a class="headerlink" href="#ansible-playbook-file" title="Permalink to this headline">¶</a></h4>
-<p>It’s either a <code class="docutils literal notranslate"><span class="pre">.yml</span></code> or <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> file that contains one or more plays.</p>
+<h3>Ansible Playbook file<a class="headerlink" href="#ansible-playbook-file" title="Permalink to this headline">¶</a></h3>
+<p>It’s either a <code class="docutils literal notranslate"><span class="pre">.yml</span></code> or <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> file that contains one or more plays. On the list avobe the files <code class="docutils literal notranslate"><span class="pre">site.yml</span></code>, <code class="docutils literal notranslate"><span class="pre">webserver.yml</span></code>, and <code class="docutils literal notranslate"><span class="pre">fooservers.yml</span></code> are playbooks.</p>
 </div>
 <div class="section" id="plays">
-<h4>Plays<a class="headerlink" href="#plays" title="Permalink to this headline">¶</a></h4>
+<h3>Plays<a class="headerlink" href="#plays" title="Permalink to this headline">¶</a></h3>
 <p>Can contain one or more tasks, and one or more roles.</p>
 </div>
 <div class="section" id="roles">
-<h4>Roles<a class="headerlink" href="#roles" title="Permalink to this headline">¶</a></h4>
-<p>Contain a set of tasks with enriched data that can be very useful to be reused, such as templates (for services configuration files, for example)..</p>
+<h3>Roles<a class="headerlink" href="#roles" title="Permalink to this headline">¶</a></h3>
+<p>Contain a set of tasks with enriched data that can be very useful to be reused, such as templates (for services configuration files, for example). On the list above the roles are: <code class="docutils literal notranslate"><span class="pre">common</span></code> and <code class="docutils literal notranslate"><span class="pre">webservers</span></code>.</p>
+<p>Focusing on the <code class="docutils literal notranslate"><span class="pre">roles</span></code> directory for a moment, let’s point out some things:</p>
+<ul>
+<li><p class="first">The minimum set of directories that you need for any Ansible role, using the role <code class="docutils literal notranslate"><span class="pre">common</span></code> as an example, is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>roles
+└── common
+    └── tasks
+        └── main.yml
+
+2 directories, 1 file
+</pre></div>
+</div>
+</li>
+<li><p class="first">The file <code class="docutils literal notranslate"><span class="pre">tasks/main.yml</span></code> will be the entry point for the role.</p>
+</li>
+<li><p class="first">I usually start filling up this <code class="docutils literal notranslate"><span class="pre">main.yml</span></code> file and then create all other files when necessary (for example, if I need a template I’d create a <code class="docutils literal notranslate"><span class="pre">common/templates/</span></code> directory and place it there).</p>
+</li>
+</ul>
+<p><strong>Why use this directory structure on the roles and not something else?</strong></p>
+<p>The Ansible modules will typically find files or templates on a specific directory, therefore if the directory doesn’t exist you’ll get an error.</p>
 </div>
 <div class="section" id="tasks">
-<h4>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h4>
+<h3>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h3>
 <p>Are the minimum unit of work in Ansible. Ultimately everything is broken down into a task. A task normally includes a module.</p>
+<p>The tasks could either be within a role (in the file ROLENAME/tasks/main.yml) or directly in a play (by using the object <code class="docutils literal notranslate"><span class="pre">tasks</span></code>)</p>
+<blockquote>
+<div>ROLENAME is just a placeholder, making reference to the name of the role.</div></blockquote>
 </div>
 <div class="section" id="module">
-<h4>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h4>
+<h3>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h3>
 <p>Units that control certain actions available to be performed by Ansible on the target host. This is where Ansible gets its superpowers from.</p>
 </div>
 </div>
 <div class="section" id="ansible-ad-hoc">
-<h3>Ansible ad-hoc<a class="headerlink" href="#ansible-ad-hoc" title="Permalink to this headline">¶</a></h3>
+<h2>Ansible ad-hoc<a class="headerlink" href="#ansible-ad-hoc" title="Permalink to this headline">¶</a></h2>
 <p>Servers as a way to perform one-off tasks against a group of hosts. Examples: install a apt package on a certain group of hosts.</p>
-</div>
 </div>
 </div>
 
