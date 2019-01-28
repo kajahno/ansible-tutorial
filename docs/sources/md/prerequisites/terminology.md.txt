@@ -1,0 +1,43 @@
+# Terminology
+
+This section will provide with the minimum theory required to work with Ansible.
+
+### Modes of execution
+
+There are two main modes in which Ansible can be run: ad-hoc mode and playbook mode. 
+
+#### Ansible Playbook 
+
+Drawn on a diagram the architecture of Ansible running in playbook-mode would look similar to the following:
+
+![](diagrams/ansible-arch.png)
+
+##### Inventory
+
+Is where the list of hosts that can be targeted lives.
+
+##### Ansible Playbook file
+
+It's either a `.yml` or `.yaml` file that contains one or more plays.
+
+##### Plays
+
+Can contain one or more tasks, and one or more roles.
+
+##### Roles
+
+Contain a set of tasks with enriched data that can be very useful to be reused, such as templates (for services configuration files, for example)..
+
+##### Tasks
+
+Are the minimum unit of work in Ansible. Ultimately everything is broken down into a task. A task normally includes a module.
+
+##### Module
+
+Units that control certain actions available to be performed by Ansible on the target host. This is where Ansible gets its superpowers from.
+
+
+#### Ansible ad-hoc
+
+Servers as a way to perform one-off tasks against a group of hosts. Examples: install a apt package on a certain group of hosts.
+

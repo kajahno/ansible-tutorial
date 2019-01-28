@@ -18,7 +18,7 @@
   <!-- End Google Tag Manager Data Layer -->
 
   
-  <title>Prerequisites &mdash; Ansible Quickstart Tutorial 0.0.1 documentation</title>
+  <title>Terminology &mdash; Ansible Quickstart Tutorial 0.0.1 documentation</title>
   
 
   
@@ -56,8 +56,8 @@
   <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Best practices and first playbook" href="../tutorial/1_playbook.html" />
-    <link rel="prev" title="Terminology" href="terminology.html" /> 
+    <link rel="next" title="Prerequisites" href="prerequisites.html" />
+    <link rel="prev" title="What is Ansible?" href="../introduction.html" /> 
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -151,29 +151,29 @@
 </ul>
 <p class="caption"><span class="caption-text">Prerequisites</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="terminology.html">Terminology</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="terminology.html#modes-of-execution">Modes of execution</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="terminology.html#ansible-playbook">Ansible Playbook</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="terminology.html#inventory">Inventory</a></li>
-<li class="toctree-l4"><a class="reference internal" href="terminology.html#ansible-playbook-file">Ansible Playbook file</a></li>
-<li class="toctree-l4"><a class="reference internal" href="terminology.html#plays">Plays</a></li>
-<li class="toctree-l4"><a class="reference internal" href="terminology.html#roles">Roles</a></li>
-<li class="toctree-l4"><a class="reference internal" href="terminology.html#tasks">Tasks</a></li>
-<li class="toctree-l4"><a class="reference internal" href="terminology.html#module">Module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Terminology</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modes-of-execution">Modes of execution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ansible-playbook">Ansible Playbook</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#inventory">Inventory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ansible-playbook-file">Ansible Playbook file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plays">Plays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roles">Roles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks">Tasks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module">Module</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="terminology.html#ansible-ad-hoc">Ansible ad-hoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ansible-ad-hoc">Ansible ad-hoc</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Prerequisites</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#create-a-virtual-environment">Create a virtual environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#activate-a-virtual-environment">Activate a virtual environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-ansible">Install Ansible</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-virtualbox">Install VirtualBox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-vagrant">Install Vagrant</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Prerequisites</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prerequisites.html#create-a-virtual-environment">Create a virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prerequisites.html#activate-a-virtual-environment">Activate a virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prerequisites.html#install-ansible">Install Ansible</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prerequisites.html#install-virtualbox">Install VirtualBox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prerequisites.html#install-vagrant">Install Vagrant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prerequisites.html#references">References</a></li>
 </ul>
 </li>
 </ul>
@@ -252,10 +252,10 @@
 
           <ul class="wy-breadcrumbs">
   <li><a href="../../index.html">Docs</a> &raquo;</li>
-  <li><a href="">Prerequisites</a></li>
+  <li><a href="">Terminology</a></li>
   
     <li class="wy-breadcrumbs-aside">
-      <a href="https://github.com/kajahno/ansible-tutorial/edit/master/source/md/prerequisites/prerequisites.md?description=%3C!---%20Your%20description%20here%20--%3E%0A%0A%2Blabel:%20docsite_pr" class="icon icon-github"> Edit on GitHub</a>
+      <a href="https://github.com/kajahno/ansible-tutorial/edit/master/source/md/prerequisites/terminology.md?description=%3C!---%20Your%20description%20here%20--%3E%0A%0A%2Blabel:%20docsite_pr" class="icon icon-github"> Edit on GitHub</a>
     </li>
   
 </ul>
@@ -263,105 +263,45 @@
 
           <div id="page-content">
           
-  <div class="section" id="prerequisites">
-<h1>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h1>
-<p>In this tutorial, and the upcoming tutorials it will be assumed that Ansible is used inside a <a class="reference external" href="https://python-guide-cn.readthedocs.io/en/latest/dev/virtualenvs.html">Python Virtual Environment</a>. The advantage of this is that we can have a separate set of packages that will be installed in isolation with regards to the operating system, making it very useful to work with different projects and control the dependencies more granularly.</p>
-<p>I wrote this using Linux Ubuntu, but the steps should be transferable to any OS you use.</p>
-<div class="section" id="create-a-virtual-environment">
-<h2>Create a virtual environment<a class="headerlink" href="#create-a-virtual-environment" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p class="first">Ensure <code class="docutils literal notranslate"><span class="pre">pip</span></code> is installed:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install python-pip
-</pre></div>
+  <div class="section" id="terminology">
+<h1>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h1>
+<p>This section will provide with the minimum theory required to work with Ansible.</p>
+<div class="section" id="modes-of-execution">
+<h2>Modes of execution<a class="headerlink" href="#modes-of-execution" title="Permalink to this headline">¶</a></h2>
+<p>There are two main modes in which Ansible can be run: ad-hoc mode and playbook mode.</p>
+<div class="section" id="ansible-playbook">
+<h3>Ansible Playbook<a class="headerlink" href="#ansible-playbook" title="Permalink to this headline">¶</a></h3>
+<p>Drawn on a diagram the architecture of Ansible running in playbook-mode would look similar to the following:</p>
+<p><img alt="../../images/ansible-arch.png" src="../../images/ansible-arch.png" /></p>
+<div class="section" id="inventory">
+<h4>Inventory<a class="headerlink" href="#inventory" title="Permalink to this headline">¶</a></h4>
+<p>Is where the list of hosts that can be targeted lives.</p>
 </div>
-</li>
-<li><p class="first">Ensure <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> is installed:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install virtualenv
-</pre></div>
+<div class="section" id="ansible-playbook-file">
+<h4>Ansible Playbook file<a class="headerlink" href="#ansible-playbook-file" title="Permalink to this headline">¶</a></h4>
+<p>It’s either a <code class="docutils literal notranslate"><span class="pre">.yml</span></code> or <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> file that contains one or more plays.</p>
 </div>
-</li>
-<li><p class="first">Create a virtual environment using python3, under <code class="docutils literal notranslate"><span class="pre">~/.venv</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ virtualenv -p <span class="k">$(</span> which python3 <span class="k">)</span> .venv
-</pre></div>
+<div class="section" id="plays">
+<h4>Plays<a class="headerlink" href="#plays" title="Permalink to this headline">¶</a></h4>
+<p>Can contain one or more tasks, and one or more roles.</p>
 </div>
-</li>
-</ul>
+<div class="section" id="roles">
+<h4>Roles<a class="headerlink" href="#roles" title="Permalink to this headline">¶</a></h4>
+<p>Contain a set of tasks with enriched data that can be very useful to be reused, such as templates (for services configuration files, for example)..</p>
 </div>
-<div class="section" id="activate-a-virtual-environment">
-<h2>Activate a virtual environment<a class="headerlink" href="#activate-a-virtual-environment" title="Permalink to this headline">¶</a></h2>
-<p>You will be doing this quite often, so please keep this command handy:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> .venv/bin/activate
-<span class="o">(</span>.venv<span class="o">)</span> $ 
-</pre></div>
+<div class="section" id="tasks">
+<h4>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h4>
+<p>Are the minimum unit of work in Ansible. Ultimately everything is broken down into a task. A task normally includes a module.</p>
 </div>
-<p>After this you will notice how the Linux prompt has changed, adding <code class="docutils literal notranslate"><span class="pre">(.venv)</span></code> at the beginning.</p>
-<p>To deactivate the virtual environment simply run <code class="docutils literal notranslate"><span class="pre">deactivate</span></code>. After this you will notice how the Linux prompt returns to its original state.</p>
-<p><em>Note</em>: for the purpose of this tutorial leave the virtual environment activated at all times.</p>
-</div>
-<div class="section" id="install-ansible">
-<h2>Install Ansible<a class="headerlink" href="#install-ansible" title="Permalink to this headline">¶</a></h2>
-<p>Get the latest stable release (2.7 at the moment of this guide):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> $ pip install ansible
-</pre></div>
-</div>
-<p>Verify Ansible has been intalled:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> $ ansible --version
-ansible <span class="m">2</span>.7.6
-</pre></div>
+<div class="section" id="module">
+<h4>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h4>
+<p>Units that control certain actions available to be performed by Ansible on the target host. This is where Ansible gets its superpowers from.</p>
 </div>
 </div>
-<div class="section" id="install-virtualbox">
-<h2>Install VirtualBox<a class="headerlink" href="#install-virtualbox" title="Permalink to this headline">¶</a></h2>
-<p>We’ll use VirtualBox as virtualizer on this tutorial.</p>
-<ul>
-<li><p class="first">Download the latest version from the website <a class="reference external" href="https://www.virtualbox.org/wiki/Linux_Downloads">here</a>.</p>
-<blockquote>
-<div><p><img alt="../../images/vb-download.png" src="../../images/vb-download.png" /></p>
-</div></blockquote>
-<ul class="simple">
-<li>Make sure to specify the correct version of your operating system.</li>
-</ul>
-</li>
-<li><p class="first">Install the <code class="docutils literal notranslate"><span class="pre">.deb</span></code> file by opening it (or use <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">dpkg</span> <span class="pre">-i</span> <span class="pre">FILENAME</span></code>, making sure to specify the right filename)</p>
-</li>
-</ul>
+<div class="section" id="ansible-ad-hoc">
+<h3>Ansible ad-hoc<a class="headerlink" href="#ansible-ad-hoc" title="Permalink to this headline">¶</a></h3>
+<p>Servers as a way to perform one-off tasks against a group of hosts. Examples: install a apt package on a certain group of hosts.</p>
 </div>
-<div class="section" id="install-vagrant">
-<h2>Install Vagrant<a class="headerlink" href="#install-vagrant" title="Permalink to this headline">¶</a></h2>
-<p>We will use vagrant to quickly spin up virtual machines, using Virtual box as a driver (Vagrant will use it by default).</p>
-<ul>
-<li><p class="first">Download the latest version from the <a class="reference external" href="https://releases.hashicorp.com/vagrant/">download page</a> (2.2.0 at the moment of writing this):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://releases.hashicorp.com/vagrant/2.2.0/vagrant_2.2.0_linux_amd64.zip
-</pre></div>
-</div>
-</li>
-<li><p class="first">Unzip the downloaded file</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ unzip vagrant_2.2.0_linux_amd64.zip
-</pre></div>
-</div>
-</li>
-<li><p class="first">Add to the user binaries path</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo mv vagrant /usr/local/bin/
-</pre></div>
-</div>
-</li>
-<li><p class="first">Verify Vagrant has been installed</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ vagrant --version
-Vagrant 2.2.0
-</pre></div>
-</div>
-</li>
-</ul>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="https://docs.python-guide.org/dev/virtualenvs/">Python virtual environments</a></li>
-<li><a class="reference external" href="https://www.vagrantup.com/">Vagrant</a></li>
-<li><a class="reference external" href="https://app.vagrantup.com/boxes/search">Vagrant cloud</a></li>
-<li><a class="reference external" href="https://www.ansible.com/how-ansible-works/">Learn more about Ansible</a></li>
-<li><a class="reference external" href="http://docs.ansible.com/">Ansible documentation</a></li>
-</ul>
 </div>
 </div>
 
@@ -372,10 +312,10 @@ Vagrant 2.2.0
   
     <div class="rst-footer-buttons">
       
-        <a href="../tutorial/1_playbook.html" class="btn btn-neutral float-right" title="Best practices and first playbook"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="prerequisites.html" class="btn btn-neutral float-right" title="Prerequisites"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="terminology.html" class="btn btn-neutral" title="Terminology"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../introduction.html" class="btn btn-neutral" title="What is Ansible?"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   

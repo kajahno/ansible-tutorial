@@ -56,7 +56,7 @@
   <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Prerequisites" href="prerequisites/prerequisites.html" />
+    <link rel="next" title="Terminology" href="prerequisites/terminology.html" />
     <link rel="prev" title="Ansible Quickstart Tutorial" href="../index.html" /> 
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -151,10 +151,27 @@
 </ul>
 <p class="caption"><span class="caption-text">Prerequisites</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="prerequisites/terminology.html">Terminology</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prerequisites/terminology.html#modes-of-execution">Modes of execution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="prerequisites/terminology.html#ansible-playbook">Ansible Playbook</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prerequisites/terminology.html#inventory">Inventory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prerequisites/terminology.html#ansible-playbook-file">Ansible Playbook file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prerequisites/terminology.html#plays">Plays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prerequisites/terminology.html#roles">Roles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prerequisites/terminology.html#tasks">Tasks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prerequisites/terminology.html#module">Module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prerequisites/terminology.html#ansible-ad-hoc">Ansible ad-hoc</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="prerequisites/prerequisites.html">Prerequisites</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="prerequisites/prerequisites.html#create-a-virtual-environment">Create a virtual environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="prerequisites/prerequisites.html#activate-a-virtual-environment">Activate a virtual environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="prerequisites/prerequisites.html#install-ansible">Install Ansible</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prerequisites/prerequisites.html#install-virtualbox">Install VirtualBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="prerequisites/prerequisites.html#install-vagrant">Install Vagrant</a></li>
 <li class="toctree-l2"><a class="reference internal" href="prerequisites/prerequisites.html#references">References</a></li>
 </ul>
@@ -261,12 +278,12 @@
 </div>
 <div class="section" id="expansion-of-the-tool">
 <h2>Expansion of the tool<a class="headerlink" href="#expansion-of-the-tool" title="Permalink to this headline">¶</a></h2>
-<p>Even though Ansible provides many modules out of the box that will help to perform many of the common provisioning and deployment tasks, it is very easy to extend and adapt to a custom scenario/software.</p>
+<p>Even though Ansible provides many modules out of the box that will help to perform many of the common provisioning and deployment tasks, it is very easy to extend and adapt to a custom need (developing a module, or even a plugin).</p>
 <p>The development is done in a Python ecosystem, making it easy to work with in many operating systems.</p>
 </div>
 <div class="section" id="declarative-vs-imperative-model">
 <h2>Declarative vs Imperative model<a class="headerlink" href="#declarative-vs-imperative-model" title="Permalink to this headline">¶</a></h2>
-<p>In Ansible the syntax is declarative, meaning you specify <strong>what</strong> things should look like on the remote hosts and Ansible will make it happen. The other common syntax is imperative, meaning you specify <strong>how</strong> things should be performed (such as in Chef) on the remote hosts.</p>
+<p>In Ansible the syntax is declarative, meaning you specify <strong>what</strong> things should look like on the remote hosts and Ansible will make it happen. The other common syntax is imperative, meaning you specify <strong>how</strong> things should be performed on the remote hosts (such as in Chef).</p>
 </div>
 <div class="section" id="tools-similar-to-ansible">
 <h2>Tools similar to Ansible<a class="headerlink" href="#tools-similar-to-ansible" title="Permalink to this headline">¶</a></h2>
@@ -289,7 +306,7 @@
   
     <div class="rst-footer-buttons">
       
-        <a href="prerequisites/prerequisites.html" class="btn btn-neutral float-right" title="Prerequisites"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="prerequisites/terminology.html" class="btn btn-neutral float-right" title="Terminology"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../index.html" class="btn btn-neutral" title="Ansible Quickstart Tutorial"><span class="icon icon-circle-arrow-left"></span> Previous</a>

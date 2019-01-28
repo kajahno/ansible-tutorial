@@ -14,13 +14,13 @@ Ansible, as opposite to many other tools, does not require a remote agent to be 
 
 ## Expansion of the tool
 
-Even though Ansible provides many modules out of the box that will help to perform many of the common provisioning and deployment tasks, it is very easy to extend and adapt to a custom scenario/software.
+Even though Ansible provides many modules out of the box that will help to perform many of the common provisioning and deployment tasks, it is very easy to extend and adapt to a custom need (developing a module, or even a plugin).
 
 The development is done in a Python ecosystem, making it easy to work with in many operating systems.
 
 ## Declarative vs Imperative model 
 
-In Ansible the syntax is declarative, meaning you specify **what** things should look like on the remote hosts and Ansible will make it happen. The other common syntax is imperative, meaning you specify **how** things should be performed (such as in Chef) on the remote hosts.
+In Ansible the syntax is declarative, meaning you specify **what** things should look like on the remote hosts and Ansible will make it happen. The other common syntax is imperative, meaning you specify **how** things should be performed on the remote hosts (such as in Chef).
 
 ## Tools similar to Ansible
 

@@ -23,9 +23,18 @@
 
 Create a directory somewhere in your filesystem named `ansible`. For the purposes of the tutorial I'll assume it was created on `~/ansible`.
 
+```
+(.venv) $ mkdir ~/ansible
+```
+
 Change directories to the previously created directory.
+```
+(.venv) $ cd ~/ansible
+```
 
 ### Create a role to provision the popular nginx webserver with a sample page
+
+The way to think about a role is as a pre-defined set of tasks that can be controlled with parameters, and included in the plays.
 
 #### Basic directory structure
 Following the provided example in the [documentation](https://docs.ansible.com/ansible/2.7/user_guide/playbooks_reuse_roles.html), the directory structure of an ansible project can be as follows:

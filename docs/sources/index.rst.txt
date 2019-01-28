@@ -23,6 +23,7 @@ For the official documentation you can go here_.
    :maxdepth: 3
    :caption: Prerequisites
 
+   md/prerequisites/terminology
    md/prerequisites/prerequisites
 
 .. toctree::
