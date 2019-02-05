@@ -107,7 +107,7 @@
                 <div class="DocSiteProduct-logoText">
                     Quickstart Tutorial  
                     <div class="DocSiteProduct-CurrentVersion" align="right">
-                      Updated on Jan 28, 2019
+                      Updated on Feb 05, 2019
                     </div>
                 </div>
             </div>
@@ -167,7 +167,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../prerequisites/prerequisites.html">Prerequisites</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../prerequisites/prerequisites.html#create-a-virtual-environment">Create a virtual environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../prerequisites/prerequisites.html#activate-a-virtual-environment">Activate a virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../prerequisites/prerequisites.html#activate-a-virtual-environment">Activate a virtual environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../prerequisites/prerequisites.html#deactivate-a-virtual-environment">Deactivate a virtual environment</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../prerequisites/prerequisites.html#install-ansible">Install Ansible</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../prerequisites/prerequisites.html#install-virtualbox">Install VirtualBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../prerequisites/prerequisites.html#install-vagrant">Install Vagrant</a></li>
@@ -264,12 +267,17 @@
 <h1>Best practices and first playbook<a class="headerlink" href="#best-practices-and-first-playbook" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
-<p>Create a directory somewhere in your filesystem named <code class="docutils literal notranslate"><span class="pre">ansible</span></code>. For the purposes of the tutorial I’ll assume it was created on <code class="docutils literal notranslate"><span class="pre">~/ansible</span></code>.</p>
+<p>Create a directory somewhere in your filesystem named <code class="docutils literal notranslate"><span class="pre">ansible</span></code>.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">For the purposes of the tutorial I’ll assume it was created on <code class="code docutils literal notranslate"><span class="pre">~/ansible</span></code>.</p>
+</div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(.venv) $ mkdir ~/ansible
 </pre></div>
 </div>
 <p>Change directories to the previously created directory.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(.venv) $ cd ~/ansible
+(.venv) ~/ansible $
 </pre></div>
 </div>
 </div>
@@ -278,7 +286,7 @@
 <p>The way to think about a role is as a pre-defined set of tasks that can be controlled with parameters, and included in the plays, which are included on a playbook <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> file.</p>
 <div class="section" id="role-webservers-nginx">
 <h3>Role <code class="docutils literal notranslate"><span class="pre">webservers-nginx</span></code><a class="headerlink" href="#role-webservers-nginx" title="Permalink to this headline">¶</a></h3>
-<p>We will name the role to be created as <code class="docutils literal notranslate"><span class="pre">webservers-nginx</span></code>. To proceed let’s create the minimum required directory structure for a role:</p>
+<p>We will name the role to be created as <code class="docutils literal notranslate"><span class="pre">webservers-nginx</span></code>. To proceed let’s create the minimum required directory structure for the role:</p>
 <ul>
 <li><p class="first">Create the file <code class="docutils literal notranslate"><span class="pre">webservers-nginx/tasks/main.yml</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> ~/ansible $ mkdir -p roles/webservers-nginx/tasks/
@@ -300,6 +308,10 @@
     <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">started</span>
     <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
 </pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Do not use tabs as YAML doesn’t support them (see <a class="reference external" href="https://yaml.org/faq.html">here</a>).</p>
 </div>
 </li>
 </ul>
@@ -463,7 +475,7 @@ PLAY RECAP *********************************************************************
 </script>
 
   <p>
-  Last updated on Jan 28, 2019. <br/>
+  Last updated on Feb 05, 2019. <br/>
   </p>
 </footer>
         </div>

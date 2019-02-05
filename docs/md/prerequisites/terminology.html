@@ -107,7 +107,7 @@
                 <div class="DocSiteProduct-logoText">
                     Quickstart Tutorial  
                     <div class="DocSiteProduct-CurrentVersion" align="right">
-                      Updated on Jan 28, 2019
+                      Updated on Feb 05, 2019
                     </div>
                 </div>
             </div>
@@ -167,7 +167,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Prerequisites</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="prerequisites.html#create-a-virtual-environment">Create a virtual environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="prerequisites.html#activate-a-virtual-environment">Activate a virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prerequisites.html#activate-a-virtual-environment">Activate a virtual environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="prerequisites.html#deactivate-a-virtual-environment">Deactivate a virtual environment</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="prerequisites.html#install-ansible">Install Ansible</a></li>
 <li class="toctree-l2"><a class="reference internal" href="prerequisites.html#install-virtualbox">Install VirtualBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="prerequisites.html#install-vagrant">Install Vagrant</a></li>
@@ -263,14 +266,14 @@
   <div class="section" id="terminology">
 <h1>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h1>
 <p>This section will provide with the minimum theory required to work with Ansible.</p>
-<p>There are two main modes in which Ansible can be run: ad-hoc mode and playbook mode. We will make more emphasis in the playbook mode.</p>
+<p>There are two main modes in which Ansible can be run: <a class="reference external" href="#ansible-ad-hoc"><strong>ad-hoc mode</strong></a> and <a class="reference external" href="#ansible-playbook"><strong>playbook mode</strong></a>. We will make more emphasis in the playbook mode.</p>
 <div class="section" id="ansible-playbook">
 <h2>Ansible Playbook<a class="headerlink" href="#ansible-playbook" title="Permalink to this headline">¶</a></h2>
-<p>Drawn on a diagram the architecture of Ansible running in playbook-mode would look similar to the following:</p>
+<p>Drawn on a diagram, the architecture of Ansible running in playbook-mode would look similar to the following:</p>
 <p><img alt="../../images/ansible-arch.png" src="../../images/ansible-arch.png" /></p>
 <div class="section" id="basic-directory-structure">
 <h3>Basic directory structure<a class="headerlink" href="#basic-directory-structure" title="Permalink to this headline">¶</a></h3>
-<p>Following the provided example in the <a class="reference external" href="https://docs.ansible.com/ansible/2.7/user_guide/playbooks_reuse_roles.html">documentation</a>, the directory structure of an ansible project can be as follows:</p>
+<p>Following the example provided in the <a class="reference external" href="https://docs.ansible.com/ansible/2.7/user_guide/playbooks_reuse_roles.html">documentation</a>, the directory structure of an ansible project can be as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">site</span><span class="o">.</span><span class="n">yml</span>
 <span class="n">webservers</span><span class="o">.</span><span class="n">yml</span>
 <span class="n">fooservers</span><span class="o">.</span><span class="n">yml</span>
@@ -293,10 +296,14 @@
 <div class="section" id="inventory">
 <h3>Inventory<a class="headerlink" href="#inventory" title="Permalink to this headline">¶</a></h3>
 <p>Is where the list of hosts that can be targeted lives.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">We can have a list of IPs, hostnames, combinations, and much more. This will be covered more in depth in the inventory section.</p>
+</div>
 </div>
 <div class="section" id="ansible-playbook-file">
 <h3>Ansible Playbook file<a class="headerlink" href="#ansible-playbook-file" title="Permalink to this headline">¶</a></h3>
-<p>It’s either a <code class="docutils literal notranslate"><span class="pre">.yml</span></code> or <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> file that contains one or more plays. On the list avobe the files <code class="docutils literal notranslate"><span class="pre">site.yml</span></code>, <code class="docutils literal notranslate"><span class="pre">webserver.yml</span></code>, and <code class="docutils literal notranslate"><span class="pre">fooservers.yml</span></code> are playbooks.</p>
+<p>It’s either a <code class="docutils literal notranslate"><span class="pre">.yml</span></code> or <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> file that contains one or more plays. On the list above, the files <code class="docutils literal notranslate"><span class="pre">site.yml</span></code>, <code class="docutils literal notranslate"><span class="pre">webserver.yml</span></code>, and <code class="docutils literal notranslate"><span class="pre">fooservers.yml</span></code> are playbooks.</p>
 </div>
 <div class="section" id="plays">
 <h3>Plays<a class="headerlink" href="#plays" title="Permalink to this headline">¶</a></h3>
@@ -304,7 +311,7 @@
 </div>
 <div class="section" id="roles">
 <h3>Roles<a class="headerlink" href="#roles" title="Permalink to this headline">¶</a></h3>
-<p>Contain a set of tasks with enriched data that can be very useful to be reused, such as templates (for services configuration files, for example). On the list above the roles are: <code class="docutils literal notranslate"><span class="pre">common</span></code> and <code class="docutils literal notranslate"><span class="pre">webservers</span></code>.</p>
+<p>Contain a set of grouped tasks data that can be reused in many plays. On the list above the roles presented are: <code class="docutils literal notranslate"><span class="pre">common</span></code> and <code class="docutils literal notranslate"><span class="pre">webservers</span></code>.</p>
 <p>Focusing on the <code class="docutils literal notranslate"><span class="pre">roles</span></code> directory for a moment, let’s point out some things:</p>
 <ul>
 <li><p class="first">The minimum set of directories that you need for any Ansible role, using the role <code class="docutils literal notranslate"><span class="pre">common</span></code> as an example, is:</p>
@@ -318,28 +325,43 @@
 </div>
 </li>
 <li><p class="first">The file <code class="docutils literal notranslate"><span class="pre">tasks/main.yml</span></code> will be the entry point for the role.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Any role must have at least a tasks/main.yml file.</p>
+</div>
 </li>
-<li><p class="first">I usually start filling up this <code class="docutils literal notranslate"><span class="pre">main.yml</span></code> file and then create all other files when necessary (for example, if I need a template I’d create a <code class="docutils literal notranslate"><span class="pre">common/templates/</span></code> directory and place it there).</p>
+<li><p class="first">I usually start filling up this <code class="docutils literal notranslate"><span class="pre">main.yml</span></code> file and then create all other files/directories when necessary (for example, in this case if I needed a template I’d create a <code class="docutils literal notranslate"><span class="pre">common/templates/</span></code> directory and place it there).</p>
 </li>
 </ul>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
 <p><strong>Why use this directory structure on the roles and not something else?</strong></p>
-<p>The Ansible modules will typically find files or templates on a specific directory, therefore if the directory doesn’t exist you’ll get an error.</p>
+<p class="last">The Ansible modules will typically assume this naming convention to find the resources, therefore chances are you’ll get an error if a resource cannot be accessed.</p>
+</div>
 </div>
 <div class="section" id="tasks">
 <h3>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h3>
-<p>Are the minimum unit of work in Ansible. Ultimately everything is broken down into a task. A task normally includes a module.</p>
-<p>The tasks could either be within a role (in the file ROLENAME/tasks/main.yml) or directly in a play (by using the object <code class="docutils literal notranslate"><span class="pre">tasks</span></code>)</p>
-<blockquote>
-<div>ROLENAME is just a placeholder, making reference to the name of the role.</div></blockquote>
+<p>These are the minimum unit of work in Ansible. Ultimately everything is broken down into a set of tasks. A task normally includes a module.</p>
+<p>The tasks can be found in two cases:</p>
+<ul class="simple">
+<li>within a role (in the file <code class="docutils literal notranslate"><span class="pre">ROLENAME/tasks/main.yml</span></code>)</li>
+<li>directly in a play (by using the object <code class="docutils literal notranslate"><span class="pre">tasks</span></code>)</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><strong>ROLENAME</strong> is just a placeholder, it makes reference to the name of the role.</p>
+</div>
 </div>
 <div class="section" id="module">
 <h3>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h3>
 <p>Units that control certain actions available to be performed by Ansible on the target host. This is where Ansible gets its superpowers from.</p>
+<p>You can find a list of available modules in <a class="reference external" href="https://docs.ansible.com/ansible/latest/modules/modules_by_category.html">here</a>.</p>
 </div>
 </div>
 <div class="section" id="ansible-ad-hoc">
 <h2>Ansible ad-hoc<a class="headerlink" href="#ansible-ad-hoc" title="Permalink to this headline">¶</a></h2>
 <p>Servers as a way to perform one-off tasks against a group of hosts. Examples: install a apt package on a certain group of hosts.</p>
+<p>This can be very useful to debug simple cases such as connectivity among hosts, or even printing the Ansible variables a remote host has available.</p>
 </div>
 </div>
 
@@ -370,7 +392,7 @@
 </script>
 
   <p>
-  Last updated on Jan 28, 2019. <br/>
+  Last updated on Feb 05, 2019. <br/>
   </p>
 </footer>
         </div>

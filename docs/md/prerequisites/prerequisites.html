@@ -107,7 +107,7 @@
                 <div class="DocSiteProduct-logoText">
                     Quickstart Tutorial  
                     <div class="DocSiteProduct-CurrentVersion" align="right">
-                      Updated on Jan 28, 2019
+                      Updated on Feb 05, 2019
                     </div>
                 </div>
             </div>
@@ -167,7 +167,10 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Prerequisites</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#create-a-virtual-environment">Create a virtual environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#activate-a-virtual-environment">Activate a virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#activate-a-virtual-environment">Activate a virtual environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#deactivate-a-virtual-environment">Deactivate a virtual environment</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#install-ansible">Install Ansible</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-virtualbox">Install VirtualBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-vagrant">Install Vagrant</a></li>
@@ -273,13 +276,17 @@
 </div>
 </li>
 <li><p class="first">Ensure <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> is installed:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install virtualenv
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo pip install virtualenv
 </pre></div>
 </div>
 </li>
 <li><p class="first">Create a virtual environment using python3, under <code class="docutils literal notranslate"><span class="pre">~/.venv</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ virtualenv -p <span class="k">$(</span> which python3 <span class="k">)</span> .venv
 </pre></div>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The virtual environment can be created anywhere in your filesystem, and can have any name.</p>
 </div>
 </li>
 </ul>
@@ -292,8 +299,19 @@
 </pre></div>
 </div>
 <p>After this you will notice how the Linux prompt has changed, adding <code class="docutils literal notranslate"><span class="pre">(.venv)</span></code> at the beginning.</p>
-<p>To deactivate the virtual environment simply run <code class="docutils literal notranslate"><span class="pre">deactivate</span></code>. After this you will notice how the Linux prompt returns to its original state.</p>
-<p><em>Note</em>: for the purpose of this tutorial leave the virtual environment activated at all times.</p>
+<div class="section" id="deactivate-a-virtual-environment">
+<h3>Deactivate a virtual environment<a class="headerlink" href="#deactivate-a-virtual-environment" title="Permalink to this headline">¶</a></h3>
+<p>To deactivate the virtual environment simply run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> $ deactivate
+$ 
+</pre></div>
+</div>
+<p>After this you will notice how the Linux prompt returns to its original state.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last"><strong>Note</strong>: for the purpose of this tutorial <strong>leave the virtual environment activated</strong> at all times.</p>
+</div>
+</div>
 </div>
 <div class="section" id="install-ansible">
 <h2>Install Ansible<a class="headerlink" href="#install-ansible" title="Permalink to this headline">¶</a></h2>
@@ -319,7 +337,7 @@ ansible <span class="m">2</span>.7.6
 <li>Make sure to specify the correct version of your operating system.</li>
 </ul>
 </li>
-<li><p class="first">Install the <code class="docutils literal notranslate"><span class="pre">.deb</span></code> file by opening it (or use <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">dpkg</span> <span class="pre">-i</span> <span class="pre">FILENAME</span></code>, making sure to specify the right filename)</p>
+<li><p class="first">Install the <code class="docutils literal notranslate"><span class="pre">.deb</span></code> file by opening it (or use <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">dpkg</span> <span class="pre">-i</span> <span class="pre">FILENAME</span></code>, making sure to specify the right file name)</p>
 </li>
 </ul>
 </div>
@@ -357,7 +375,6 @@ Vagrant 2.2.0
 <li><a class="reference external" href="https://www.vagrantup.com/">Vagrant</a></li>
 <li><a class="reference external" href="https://app.vagrantup.com/boxes/search">Vagrant cloud</a></li>
 <li><a class="reference external" href="https://www.ansible.com/how-ansible-works/">Learn more about Ansible</a></li>
-<li><a class="reference external" href="http://docs.ansible.com/">Ansible documentation</a></li>
 </ul>
 </div>
 </div>
@@ -389,7 +406,7 @@ Vagrant 2.2.0
 </script>
 
   <p>
-  Last updated on Jan 28, 2019. <br/>
+  Last updated on Feb 05, 2019. <br/>
   </p>
 </footer>
         </div>

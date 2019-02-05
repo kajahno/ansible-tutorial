@@ -14,11 +14,13 @@ I wrote this using Linux Ubuntu, but the steps should be transferable to any OS 
     ```
 * Ensure `virtualenv` is installed:
     ```bash
-    $ pip install virtualenv
+    $ sudo pip install virtualenv
     ```
 * Create a virtual environment using python3, under `~/.venv`
     ```bash
     $ virtualenv -p $( which python3 ) .venv
+    ```
+    ```Important:: The virtual environment can be created anywhere in your filesystem, and can have any name. 
     ```
 
 ## Activate a virtual environment
@@ -31,10 +33,17 @@ $ source .venv/bin/activate
 ```
 After this you will notice how the Linux prompt has changed, adding `(.venv)` at the beginning. 
 
-To deactivate the virtual environment simply run `deactivate`. After this you will notice how the Linux prompt returns to its original state. 
+### Deactivate a virtual environment
 
-*Note*: for the purpose of this tutorial leave the virtual environment activated at all times. 
+To deactivate the virtual environment simply run:
+```bash
+(.venv) $ deactivate
+$ 
+```
+After this you will notice how the Linux prompt returns to its original state. 
 
+```Important:: **Note**: for the purpose of this tutorial **leave the virtual environment activated** at all times. 
+```
 
 ## Install Ansible
 
@@ -56,7 +65,7 @@ We'll use VirtualBox as virtualizer on this tutorial.
 * Download the latest version from the website [here](https://www.virtualbox.org/wiki/Linux_Downloads).
   > ![](img/vb-download.png)
   * Make sure to specify the correct version of your operating system.
-* Install the `.deb` file by opening it (or use `$ dpkg -i FILENAME`, making sure to specify the right filename)
+* Install the `.deb` file by opening it (or use `$ dpkg -i FILENAME`, making sure to specify the right file name)
 
 ## Install Vagrant
 
@@ -80,10 +89,8 @@ We will use vagrant to quickly spin up virtual machines, using Virtual box as a 
     Vagrant 2.2.0
     ```
 
-
 ## References
 - [Python virtual environments](https://docs.python-guide.org/dev/virtualenvs/)
 - [Vagrant](https://www.vagrantup.com/)
 - [Vagrant cloud](https://app.vagrantup.com/boxes/search)
 - [Learn more about Ansible](https://www.ansible.com/how-ansible-works/)
-- [Ansible documentation](http://docs.ansible.com/)

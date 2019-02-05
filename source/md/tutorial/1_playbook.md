@@ -2,7 +2,12 @@
 
 ### Prerequisites
 
-Create a directory somewhere in your filesystem named `ansible`. For the purposes of the tutorial I'll assume it was created on `~/ansible`.
+Create a directory somewhere in your filesystem named `ansible`. 
+
+```eval_rst
+.. important:: 
+   For the purposes of the tutorial I'll assume it was created on :code:`~/ansible`.
+```
 
 ```
 (.venv) $ mkdir ~/ansible
@@ -11,6 +16,7 @@ Create a directory somewhere in your filesystem named `ansible`. For the purpose
 Change directories to the previously created directory.
 ```
 (.venv) $ cd ~/ansible
+(.venv) ~/ansible $
 ```
 
 ### Create a role to provision the popular nginx webserver with a sample page
@@ -19,7 +25,7 @@ The way to think about a role is as a pre-defined set of tasks that can be contr
 
 #### Role `webservers-nginx`
 
-We will name the role to be created as `webservers-nginx`. To proceed let's create the minimum required directory structure for a role:
+We will name the role to be created as `webservers-nginx`. To proceed let's create the minimum required directory structure for the role:
 
 * Create the file `webservers-nginx/tasks/main.yml`
     ```bash
@@ -41,7 +47,13 @@ We will name the role to be created as `webservers-nginx`. To proceed let's crea
         state: started
         enabled: yes
     ```
+    ```eval_rst
+    .. warning::
+       Do not use tabs as YAML doesn't support them (see here_).
+    
+    .. _here: https://yaml.org/faq.html
 
+    ```
 In this example we're just installing the popular webserver Nginx, starting it, and enabling the service at boot time (so if we reboot the destination host, this service will be auto-started).
 
 ### Create a playbook to use the role

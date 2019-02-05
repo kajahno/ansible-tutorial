@@ -107,7 +107,7 @@
                 <div class="DocSiteProduct-logoText">
                     Quickstart Tutorial  
                     <div class="DocSiteProduct-CurrentVersion" align="right">
-                      Updated on Jan 28, 2019
+                      Updated on Feb 05, 2019
                     </div>
                 </div>
             </div>
@@ -167,7 +167,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="prerequisites/prerequisites.html">Prerequisites</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="prerequisites/prerequisites.html#create-a-virtual-environment">Create a virtual environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="prerequisites/prerequisites.html#activate-a-virtual-environment">Activate a virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prerequisites/prerequisites.html#activate-a-virtual-environment">Activate a virtual environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="prerequisites/prerequisites.html#deactivate-a-virtual-environment">Deactivate a virtual environment</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="prerequisites/prerequisites.html#install-ansible">Install Ansible</a></li>
 <li class="toctree-l2"><a class="reference internal" href="prerequisites/prerequisites.html#install-virtualbox">Install VirtualBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="prerequisites/prerequisites.html#install-vagrant">Install Vagrant</a></li>
@@ -263,20 +266,23 @@
   <div class="section" id="what-is-ansible">
 <h1>What is Ansible?<a class="headerlink" href="#what-is-ansible" title="Permalink to this headline">¶</a></h1>
 <p>From the <a class="reference external" href="https://docs.ansible.com/ansible/latest/index.html#about-ansible">Ansible documentation</a>:</p>
-<blockquote>
-<div><p>Ansible is an IT automation tool. It can configure systems, deploy software, and orchestrate more advanced IT tasks such as continuous deployments or zero downtime rolling updates.</p>
-<p>Ansible’s main goals are simplicity and ease-of-use. It also has a strong focus on security and reliability, featuring a minimum of moving parts, usage of OpenSSH for transport (with other transports and pull modes as alternatives), and a language that is designed around auditability by humans–even those not familiar with the program.</p>
-</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Ansible is an IT automation tool. It can configure systems, deploy software, and orchestrate more advanced IT tasks such as continuous deployments or zero downtime rolling updates.</p>
+<p class="last">Ansible’s main goals are simplicity and ease-of-use. It also has a strong focus on security and reliability, featuring a minimum of moving parts, usage of OpenSSH for transport (with other transports and pull modes as alternatives), and a language that is designed around auditability by humans–even those not familiar with the program.</p>
+</div>
 <div class="section" id="agentless">
 <h2>Agentless<a class="headerlink" href="#agentless" title="Permalink to this headline">¶</a></h2>
-<p>Ansible, as opposite to many other tools, does not require a remote agent to be running on the remote hosts (or minions). The only real requirement is that the remote hosts are reachable via SSH, and to make the most out of the tool you’d need Python as well.</p>
-<blockquote>
-<div><strong>In summary</strong>: Ansible requires SSH and Python on the remote hosts.</div></blockquote>
+<p>Ansible, as opposite to many other tools, does not require a remote agent to be running on the remote hosts. The only real requirement is that the remote hosts are reachable via SSH, and to make the most out of the tool you’d need Python as well.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last"><strong>In summary</strong>: Ansible requires SSH and Python on the remote hosts.</p>
+</div>
 </div>
 <div class="section" id="expansion-of-the-tool">
 <h2>Expansion of the tool<a class="headerlink" href="#expansion-of-the-tool" title="Permalink to this headline">¶</a></h2>
 <p>Even though Ansible provides many modules out of the box that will help to perform many of the common provisioning and deployment tasks, it is very easy to extend and adapt to a custom need (developing a module, or even a plugin).</p>
-<p>The development is done in a Python ecosystem, making it easy to work with in many operating systems.</p>
+<p>The development is done inside a Python ecosystem, making it easy to work with in many operating systems.</p>
 </div>
 <div class="section" id="declarative-vs-imperative-model">
 <h2>Declarative vs Imperative model<a class="headerlink" href="#declarative-vs-imperative-model" title="Permalink to this headline">¶</a></h2>
@@ -323,7 +329,7 @@
 </script>
 
   <p>
-  Last updated on Jan 28, 2019. <br/>
+  Last updated on Feb 05, 2019. <br/>
   </p>
 </footer>
         </div>

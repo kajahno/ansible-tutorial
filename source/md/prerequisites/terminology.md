@@ -2,16 +2,16 @@
 
 This section will provide with the minimum theory required to work with Ansible.
 
-There are two main modes in which Ansible can be run: ad-hoc mode and playbook mode. We will make more emphasis in the playbook mode. 
+There are two main modes in which Ansible can be run: [**ad-hoc mode**](#ansible-ad-hoc) and [**playbook mode**](#ansible-playbook). We will make more emphasis in the playbook mode. 
 
 ### Ansible Playbook 
 
-Drawn on a diagram the architecture of Ansible running in playbook-mode would look similar to the following:
+Drawn on a diagram, the architecture of Ansible running in playbook-mode would look similar to the following:
 
 ![](diagrams/ansible-arch.png)
 
 #### Basic directory structure
-Following the provided example in the [documentation](https://docs.ansible.com/ansible/2.7/user_guide/playbooks_reuse_roles.html), the directory structure of an ansible project can be as follows:
+Following the example provided in the [documentation](https://docs.ansible.com/ansible/2.7/user_guide/playbooks_reuse_roles.html), the directory structure of an ansible project can be as follows:
 ```
 site.yml
 webservers.yml
@@ -35,9 +35,12 @@ roles/
 
 Is where the list of hosts that can be targeted lives.
 
+```Important:: We can have a list of IPs, hostnames, combinations, and much more. This will be covered more in depth in the inventory section.
+```
+
 #### Ansible Playbook file
 
-It's either a `.yml` or `.yaml` file that contains one or more plays. On the list avobe the files `site.yml`, `webserver.yml`, and `fooservers.yml` are playbooks.
+It's either a `.yml` or `.yaml` file that contains one or more plays. On the list above, the files `site.yml`, `webserver.yml`, and `fooservers.yml` are playbooks.
 
 #### Plays
 
@@ -45,7 +48,7 @@ Can contain one or more tasks, and one or more roles.
 
 #### Roles
 
-Contain a set of tasks with enriched data that can be very useful to be reused, such as templates (for services configuration files, for example). On the list above the roles are: `common` and `webservers`.
+Contain a set of grouped tasks data that can be reused in many plays. On the list above the roles presented are: `common` and `webservers`.
 
 Focusing on the `roles` directory for a moment, let's point out some things:
 * The minimum set of directories that you need for any Ansible role, using the role `common` as an example, is:
@@ -58,26 +61,37 @@ Focusing on the `roles` directory for a moment, let's point out some things:
     2 directories, 1 file
     ```
 * The file `tasks/main.yml` will be the entry point for the role.
-* I usually start filling up this `main.yml` file and then create all other files when necessary (for example, if I need a template I'd create a `common/templates/` directory and place it there).
+  ```Note:: Any role must have at least a tasks/main.yml file.
+  ```
+* I usually start filling up this `main.yml` file and then create all other files/directories when necessary (for example, in this case if I needed a template I'd create a `common/templates/` directory and place it there).
 
-**Why use this directory structure on the roles and not something else?**
+```eval_rst
 
-The Ansible modules will typically find files or templates on a specific directory, therefore if the directory doesn't exist you'll get an error.
+.. important::
+   **Why use this directory structure on the roles and not something else?**
+
+   The Ansible modules will typically assume this naming convention to find the resources, therefore chances are you'll get an error if a resource cannot be accessed.
+```
 
 
 #### Tasks
 
-Are the minimum unit of work in Ansible. Ultimately everything is broken down into a task. A task normally includes a module.
+These are the minimum unit of work in Ansible. Ultimately everything is broken down into a set of tasks. A task normally includes a module.
 
-The tasks could either be within a role (in the file ROLENAME/tasks/main.yml) or directly in a play (by using the object `tasks`)
-> ROLENAME is just a placeholder, making reference to the name of the role.
+The tasks can be found in two cases:
+* within a role (in the file `ROLENAME/tasks/main.yml`) 
+* directly in a play (by using the object `tasks`)
+```Note:: **ROLENAME** is just a placeholder, it makes reference to the name of the role.
+```
 
 #### Module
 
 Units that control certain actions available to be performed by Ansible on the target host. This is where Ansible gets its superpowers from.
 
+You can find a list of available modules in [here](https://docs.ansible.com/ansible/latest/modules/modules_by_category.html).
 
 ### Ansible ad-hoc
 
 Servers as a way to perform one-off tasks against a group of hosts. Examples: install a apt package on a certain group of hosts.
 
+This can be very useful to debug simple cases such as connectivity among hosts, or even printing the Ansible variables a remote host has available.
