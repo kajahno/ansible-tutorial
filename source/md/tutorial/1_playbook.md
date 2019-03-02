@@ -9,12 +9,12 @@ Create a directory somewhere in your filesystem named `ansible`.
    For the purposes of the tutorial I'll assume it was created on :code:`~/ansible`.
 ```
 
-```
+```bash
 (.venv) $ mkdir ~/ansible
 ```
 
 Change directories to the previously created directory.
-```
+```bash
 (.venv) $ cd ~/ansible
 (.venv) ~/ansible $
 ```
@@ -41,7 +41,7 @@ We will name the role to be created as `webservers-nginx`. To proceed let's crea
     ```eval_rst
     .. warning::
        Do not use tabs as YAML doesn't support them (see here_).
-    
+
     .. _here: https://yaml.org/faq.html
 
     ```
@@ -73,9 +73,9 @@ With Vagrant we can spin up virtual machines easily. In this case we will spin u
     ```bash
     (.venv) ~/ansible $ vagrant up
     ```
-    ```Note:: Time to get a cup of tea while this is done. 
+    ```Note:: Time to get a cup of tea while this is done.
     ```
- 
+
 The steps above will help to create a local infrastructure that we can use to run our Ansible playbooks against. This helps in the way that you don't (and shouldn't) need to target your important infrastructure to test a particular playbook (careful with this!).
 
 The Vagrant box we just installed can be found [here](https://app.vagrantup.com/bento/boxes/ubuntu-16.04). This image by default has the following ssh credentials:
@@ -94,7 +94,7 @@ There are at least three ways of doing this
    * When the machine was provisioned, an output similar to this was shown:
      ```eval_rst
      .. code-block:: bash
-        :emphasize-lines: 2,5
+        :emphasize-lines: 3,6
 
         [...]
         ==> default: Forwarding ports...
@@ -104,21 +104,21 @@ There are at least three ways of doing this
             default: SSH address: 127.0.0.1:2222
         [...]
      ```
-   * This means to SSH to the vagrant VM you can simply do (using password):
-     ```
+   * This means that to SSH to the vagrant VM you can simply do (using password):
+     ```bash
      (.venv) ~/ansible $ ssh -p 2222 vagrant@localhost
      ```
    * Or using the generated private key:
-     ```
+     ```bash
      (.venv) ~/ansible $ ssh -p 2222 -i .vagrant/machines/default/virtualbox/private_key vagrant@localhost
      ```
 3. Classic SSH to the host
    * Use the IP provided in the config (using password):
-     ```
+     ```bash
      (.venv) ~/ansible $ ssh vagrant@10.100.0.2
      ```
    * Or using the generated private SSH key:
-     ```
+     ```bash
      (.venv) ~/ansible $ ssh -i .vagrant/machines/default/virtualbox/private_key vagrant@10.100.0.2
      ```
 
@@ -154,7 +154,7 @@ After we have the inventory file, and the infrastructure ready, we are ready to 
     ```
 * Run the playbook:
     ```bash
-    (.venv) ~/ansible $ ansible-playbook -i inventory/hosts webservers.yml
+    (.venv) ~/ansible $ ansible-playbook -i inventory.ini webservers.yml
     ```
 
 The output of running the playbook should be:

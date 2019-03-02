@@ -276,12 +276,12 @@
 <p class="first admonition-title">Important</p>
 <p class="last">For the purposes of the tutorial I’ll assume it was created on <code class="code docutils literal notranslate"><span class="pre">~/ansible</span></code>.</p>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(.venv) $ mkdir ~/ansible
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> $ mkdir ~/ansible
 </pre></div>
 </div>
 <p>Change directories to the previously created directory.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(.venv) $ cd ~/ansible
-(.venv) ~/ansible $
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> $ <span class="nb">cd</span> ~/ansible
+<span class="o">(</span>.venv<span class="o">)</span> ~/ansible $
 </pre></div>
 </div>
 </div>
@@ -394,22 +394,22 @@
 <ul>
 <li><p class="first">When the machine was provisioned, an output similar to this was shown:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>...<span class="o">]</span>
-<span class="hll"><span class="o">==</span>&gt; default: Forwarding ports...
-</span>    default: <span class="m">22</span> <span class="o">(</span>guest<span class="o">)</span> <span class="o">=</span>&gt; <span class="m">2222</span> <span class="o">(</span>host<span class="o">)</span> <span class="o">(</span>adapter <span class="m">1</span><span class="o">)</span>
-<span class="o">==</span>&gt; default: Booting VM...
-<span class="hll"><span class="o">==</span>&gt; default: Waiting <span class="k">for</span> machine to boot. This may take a few minutes...
-</span>    default: SSH address: <span class="m">127</span>.0.0.1:2222
-<span class="o">[</span>...<span class="o">]</span>
+<span class="o">==</span>&gt; default: Forwarding ports...
+<span class="hll">    default: <span class="m">22</span> <span class="o">(</span>guest<span class="o">)</span> <span class="o">=</span>&gt; <span class="m">2222</span> <span class="o">(</span>host<span class="o">)</span> <span class="o">(</span>adapter <span class="m">1</span><span class="o">)</span>
+</span><span class="o">==</span>&gt; default: Booting VM...
+<span class="o">==</span>&gt; default: Waiting <span class="k">for</span> machine to boot. This may take a few minutes...
+<span class="hll">    default: SSH address: <span class="m">127</span>.0.0.1:2222
+</span><span class="o">[</span>...<span class="o">]</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">This means to SSH to the vagrant VM you can simply do (using password):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(.venv) ~/ansible $ ssh -p 2222 vagrant@localhost
+<li><p class="first">This means that to SSH to the vagrant VM you can simply do (using password):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> ~/ansible $ ssh -p <span class="m">2222</span> vagrant@localhost
 </pre></div>
 </div>
 </li>
 <li><p class="first">Or using the generated private key:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(.venv) ~/ansible $ ssh -p 2222 -i .vagrant/machines/default/virtualbox/private_key vagrant@localhost
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> ~/ansible $ ssh -p <span class="m">2222</span> -i .vagrant/machines/default/virtualbox/private_key vagrant@localhost
 </pre></div>
 </div>
 </li>
@@ -418,12 +418,12 @@
 <li><p class="first">Classic SSH to the host</p>
 <ul>
 <li><p class="first">Use the IP provided in the config (using password):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(.venv) ~/ansible $ ssh vagrant@10.100.0.2
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> ~/ansible $ ssh vagrant@10.100.0.2
 </pre></div>
 </div>
 </li>
 <li><p class="first">Or using the generated private SSH key:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(.venv) ~/ansible $ ssh -i .vagrant/machines/default/virtualbox/private_key vagrant@10.100.0.2
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> ~/ansible $ ssh -i .vagrant/machines/default/virtualbox/private_key vagrant@10.100.0.2
 </pre></div>
 </div>
 </li>
@@ -452,7 +452,9 @@
  7
  8
  9
-10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># Simple inventory</span>
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># Simple inventory</span>
+
 <span class="k">[nginx_webservers]</span>
 <span class="na">10.100.0.2</span>
 
@@ -489,7 +491,7 @@ After we have the inventory file, and the infrastructure ready, we are ready to 
 </td></tr></table></div>
 </li>
 <li><p class="first">Run the playbook:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> ~/ansible $ ansible-playbook -i inventory/hosts webservers.yml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> ~/ansible $ ansible-playbook -i inventory.ini webservers.yml
 </pre></div>
 </div>
 </li>

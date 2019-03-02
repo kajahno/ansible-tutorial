@@ -111,3 +111,5 @@ _site
 .vscode
 
 *.retry
+
+.vagrant
