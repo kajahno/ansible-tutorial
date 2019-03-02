@@ -33,9 +33,9 @@ roles/
 
 #### Inventory
 
-Is where the list of hosts that can be targeted lives.
+Is where the list of hosts that can be targeted live.
 
-```Important:: We can have a list of IPs, hostnames, combinations, and much more. This will be covered more in depth in the inventory section.
+```Important:: It can have a list of IPs, hostnames, a combination of both, and much more. This will be covered more in depth in the inventory section.
 ```
 
 #### Ansible Playbook file
@@ -48,10 +48,10 @@ Can contain one or more tasks, and one or more roles.
 
 #### Roles
 
-Contain a set of grouped tasks data that can be reused in many plays. On the list above the roles presented are: `common` and `webservers`.
+Contain a set of grouped tasks that can be reused in many plays. On the list above the roles presented are: `common` and `webservers`.
 
 Focusing on the `roles` directory for a moment, let's point out some things:
-* The minimum set of directories that you need for any Ansible role, using the role `common` as an example, is:
+* The minimum set of directories that you need for an Ansible role, using the role `common` as an example, is:
     ```
     roles
     └── common
@@ -70,7 +70,7 @@ Focusing on the `roles` directory for a moment, let's point out some things:
 .. important::
    **Why use this directory structure on the roles and not something else?**
 
-   The Ansible modules will typically assume this naming convention to find the resources, therefore chances are you'll get an error if a resource cannot be accessed.
+   The Ansible modules will typically assume this directory structure convention to find the resources, therefore chances are you'll get an error if a resource cannot be accessed because of a different directory structure.
 ```
 
 
@@ -78,7 +78,7 @@ Focusing on the `roles` directory for a moment, let's point out some things:
 
 These are the minimum unit of work in Ansible. Ultimately everything is broken down into a set of tasks. A task normally includes a module.
 
-The tasks can be found in two cases:
+The tasks can be normally placed in two places:
 * within a role (in the file `ROLENAME/tasks/main.yml`) 
 * directly in a play (by using the object `tasks`)
 ```Note:: **ROLENAME** is just a placeholder, it makes reference to the name of the role.
@@ -92,6 +92,8 @@ You can find a list of available modules in [here](https://docs.ansible.com/ansi
 
 ### Ansible ad-hoc
 
-Servers as a way to perform one-off tasks against a group of hosts. Examples: install a apt package on a certain group of hosts.
+Serves as a way to perform one-off tasks against a group of hosts. Examples: install a apt package on a certain group of hosts.
 
 This can be very useful to debug simple cases such as connectivity among hosts, or even printing the Ansible variables a remote host has available.
+
+The important thing to remember is that any module that is covered in the documentation, can be used as an ad hoc command. This will be covered later in the course.

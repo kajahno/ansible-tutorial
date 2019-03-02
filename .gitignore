@@ -109,3 +109,5 @@ _site
 .sass-cache
 .jekyll-metadata
 .vscode
+
+*.retry

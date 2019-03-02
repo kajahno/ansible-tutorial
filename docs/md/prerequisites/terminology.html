@@ -54,6 +54,7 @@
   
     <link rel="stylesheet" href="../../static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../static/theme-overrides.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Prerequisites" href="prerequisites.html" />
@@ -107,7 +108,7 @@
                 <div class="DocSiteProduct-logoText">
                     Quickstart Tutorial  
                     <div class="DocSiteProduct-CurrentVersion" align="right">
-                      Updated on Feb 05, 2019
+                      Updated on Mar 02, 2019
                     </div>
                 </div>
             </div>
@@ -187,7 +188,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/1_playbook.html#create-a-playbook-to-use-the-role">Create a playbook to use the role</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tutorial/1_playbook.html#creating-a-virtual-machine-using-vagrant">Creating a virtual machine using Vagrant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/1_playbook.html#creating-a-virtual-machine-using-vagrant">Creating a virtual machine using Vagrant</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutorial/1_playbook.html#how-to-ssh-to-a-vagrant-vm">How to SSH to a Vagrant VM</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorial/1_playbook.html#simple-inventory-file">Simple inventory file</a></li>
 </ul>
 </li>
@@ -295,10 +299,10 @@
 </div>
 <div class="section" id="inventory">
 <h3>Inventory<a class="headerlink" href="#inventory" title="Permalink to this headline">¶</a></h3>
-<p>Is where the list of hosts that can be targeted lives.</p>
+<p>Is where the list of hosts that can be targeted live.</p>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
-<p class="last">We can have a list of IPs, hostnames, combinations, and much more. This will be covered more in depth in the inventory section.</p>
+<p class="last">It can have a list of IPs, hostnames, a combination of both, and much more. This will be covered more in depth in the inventory section.</p>
 </div>
 </div>
 <div class="section" id="ansible-playbook-file">
@@ -311,10 +315,10 @@
 </div>
 <div class="section" id="roles">
 <h3>Roles<a class="headerlink" href="#roles" title="Permalink to this headline">¶</a></h3>
-<p>Contain a set of grouped tasks data that can be reused in many plays. On the list above the roles presented are: <code class="docutils literal notranslate"><span class="pre">common</span></code> and <code class="docutils literal notranslate"><span class="pre">webservers</span></code>.</p>
+<p>Contain a set of grouped tasks that can be reused in many plays. On the list above the roles presented are: <code class="docutils literal notranslate"><span class="pre">common</span></code> and <code class="docutils literal notranslate"><span class="pre">webservers</span></code>.</p>
 <p>Focusing on the <code class="docutils literal notranslate"><span class="pre">roles</span></code> directory for a moment, let’s point out some things:</p>
 <ul>
-<li><p class="first">The minimum set of directories that you need for any Ansible role, using the role <code class="docutils literal notranslate"><span class="pre">common</span></code> as an example, is:</p>
+<li><p class="first">The minimum set of directories that you need for an Ansible role, using the role <code class="docutils literal notranslate"><span class="pre">common</span></code> as an example, is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>roles
 └── common
     └── tasks
@@ -336,13 +340,13 @@
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
 <p><strong>Why use this directory structure on the roles and not something else?</strong></p>
-<p class="last">The Ansible modules will typically assume this naming convention to find the resources, therefore chances are you’ll get an error if a resource cannot be accessed.</p>
+<p class="last">The Ansible modules will typically assume this directory structure convention to find the resources, therefore chances are you’ll get an error if a resource cannot be accessed because of a different directory structure.</p>
 </div>
 </div>
 <div class="section" id="tasks">
 <h3>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h3>
 <p>These are the minimum unit of work in Ansible. Ultimately everything is broken down into a set of tasks. A task normally includes a module.</p>
-<p>The tasks can be found in two cases:</p>
+<p>The tasks can be normally placed in two places:</p>
 <ul class="simple">
 <li>within a role (in the file <code class="docutils literal notranslate"><span class="pre">ROLENAME/tasks/main.yml</span></code>)</li>
 <li>directly in a play (by using the object <code class="docutils literal notranslate"><span class="pre">tasks</span></code>)</li>
@@ -360,8 +364,9 @@
 </div>
 <div class="section" id="ansible-ad-hoc">
 <h2>Ansible ad-hoc<a class="headerlink" href="#ansible-ad-hoc" title="Permalink to this headline">¶</a></h2>
-<p>Servers as a way to perform one-off tasks against a group of hosts. Examples: install a apt package on a certain group of hosts.</p>
+<p>Serves as a way to perform one-off tasks against a group of hosts. Examples: install a apt package on a certain group of hosts.</p>
 <p>This can be very useful to debug simple cases such as connectivity among hosts, or even printing the Ansible variables a remote host has available.</p>
+<p>The important thing to remember is that any module that is covered in the documentation, can be used as an ad hoc command. This will be covered later in the course.</p>
 </div>
 </div>
 
@@ -392,7 +397,7 @@
 </script>
 
   <p>
-  Last updated on Feb 05, 2019. <br/>
+  Last updated on Mar 02, 2019. <br/>
   </p>
 </footer>
         </div>

@@ -1,0 +1,4 @@
+/* Fix line numers for included text blocks */
+td.linenos {
+    min-width: 0;
+}

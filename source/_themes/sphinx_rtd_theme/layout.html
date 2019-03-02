@@ -71,6 +71,7 @@
     <link rel="stylesheet" href="{{ pathto('_static/' + style, 1) }}" type="text/css" />
   {%- endif %}
   <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}" type="text/css" />
+  <link rel="stylesheet" href="{{ pathto('_static/theme-overrides.css', 1) }}" type="text/css" />
   {%- for css in css_files %}
     {%- if css|attr("rel") %}
   <link rel="{{ css.rel }}" href="{{ pathto(css.filename, 1) }}" type="text/css"{% if css.title is not none %} title="{{ css.title }}"{% endif %} />
@@ -152,7 +153,7 @@
                 <div class="DocSiteProduct-logoText">
                     Quickstart Tutorial  
                     <div class="DocSiteProduct-CurrentVersion" align="right">
-                      Updated on Feb 05, 2019
+                      Updated on Mar 02, 2019
                     </div>
                 </div>
             </div>

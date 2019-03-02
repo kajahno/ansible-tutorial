@@ -69,7 +69,7 @@ We'll use VirtualBox as virtualizer on this tutorial.
 
 ## Install Vagrant
 
-We will use vagrant to quickly spin up virtual machines, using Virtual box as a driver (Vagrant will use it by default).
+We will use vagrant to quickly spin up virtual machines, using Virtual box as a [provider](https://www.vagrantup.com/docs/providers/) (Vagrant will use it by default).
 
 * Download the latest version from the [download page](https://releases.hashicorp.com/vagrant/) (2.2.0 at the moment of writing this):
     ```

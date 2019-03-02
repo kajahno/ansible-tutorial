@@ -1,0 +1,6 @@
+---
+
+- hosts: nginx_webservers
+  become: true
+  roles:
+    - webservers-nginx
