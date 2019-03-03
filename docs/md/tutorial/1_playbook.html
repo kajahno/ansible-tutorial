@@ -108,7 +108,7 @@
                 <div class="DocSiteProduct-logoText">
                     Quickstart Tutorial  
                     <div class="DocSiteProduct-CurrentVersion" align="right">
-                      Updated on Mar 02, 2019
+                      Updated on Mar 03, 2019
                     </div>
                 </div>
             </div>
@@ -189,7 +189,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#create-a-playbook-to-use-the-role">Create a playbook to use the role</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#creating-a-virtual-machine-using-vagrant">Creating a virtual machine using Vagrant</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#how-to-ssh-to-a-vagrant-vm">How to SSH to a Vagrant VM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-ssh-into-a-vagrant-vm">How to SSH into a Vagrant VM</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#simple-inventory-file">Simple inventory file</a></li>
@@ -377,8 +377,8 @@
 <li>Username: <code class="docutils literal notranslate"><span class="pre">vagrant</span></code></li>
 <li>Password: <code class="docutils literal notranslate"><span class="pre">vagrant</span></code></li>
 </ul>
-<div class="section" id="how-to-ssh-to-a-vagrant-vm">
-<h4>How to SSH to a Vagrant VM<a class="headerlink" href="#how-to-ssh-to-a-vagrant-vm" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="how-to-ssh-into-a-vagrant-vm">
+<h4>How to SSH into a Vagrant VM<a class="headerlink" href="#how-to-ssh-into-a-vagrant-vm" title="Permalink to this headline">¶</a></h4>
 <p>There are at least three ways of doing this</p>
 <ol>
 <li><p class="first">Using <code class="docutils literal notranslate"><span class="pre">vagrant</span></code></p>
@@ -435,7 +435,7 @@
 </div>
 <div class="section" id="simple-inventory-file">
 <h3>Simple inventory file<a class="headerlink" href="#simple-inventory-file" title="Permalink to this headline">¶</a></h3>
-<p>The playbook we are going to create needs an inventory file, therefore we will create a tiny one and put the minimun content (this will be covered better in the next chapter).</p>
+<p>The playbook we are going to create needs an inventory file, therefore we will create simple one for now (this will be covered better in the next chapter).</p>
 <ul>
 <li><p class="first">Create the inventor file:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> ~/ansible $ touch inventory.ini
@@ -490,33 +490,109 @@ After we have the inventory file, and the infrastructure ready, we are ready to 
 </pre></div>
 </td></tr></table></div>
 </li>
+<li><p class="first">Test the connectivity</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> ~/ansible $ ansible -i inventory.ini -m ping all
+</pre></div>
+</div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="mf">10.100</span><span class="o">.</span><span class="mf">0.2</span> <span class="o">|</span> <span class="n">SUCCESS</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="s2">&quot;changed&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;ping&quot;</span><span class="p">:</span> <span class="s2">&quot;pong&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</li>
 <li><p class="first">Run the playbook:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> ~/ansible $ ansible-playbook -i inventory.ini webservers.yml
 </pre></div>
 </div>
+<p><strong>Output</strong>:</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span>
+<span class="n">PLAY</span> <span class="p">[</span><span class="n">nginx_webservers</span><span class="p">]</span> <span class="o">************************************************************************************************************************************************</span>
+
+<span class="n">TASK</span> <span class="p">[</span><span class="n">Gathering</span> <span class="n">Facts</span><span class="p">]</span> <span class="o">*************************************************************************************************************************************************</span>
+<span class="n">ok</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.100</span><span class="o">.</span><span class="mf">0.2</span><span class="p">]</span>
+
+<span class="hll"><span class="n">TASK</span> <span class="p">[</span><span class="n">webservers</span><span class="o">-</span><span class="n">nginx</span> <span class="p">:</span> <span class="n">install</span> <span class="n">the</span> <span class="n">nginx</span> <span class="n">reverse</span> <span class="n">proxy</span><span class="p">]</span> <span class="o">**************************************************************************************************************</span>
+</span><span class="n">changed</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.100</span><span class="o">.</span><span class="mf">0.2</span><span class="p">]</span>
+
+<span class="hll"><span class="n">TASK</span> <span class="p">[</span><span class="n">webservers</span><span class="o">-</span><span class="n">nginx</span> <span class="p">:</span> <span class="n">enable</span> <span class="n">nginx</span> <span class="n">service</span><span class="p">]</span> <span class="o">*************************************************************************************************************************</span>
+</span><span class="n">ok</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.100</span><span class="o">.</span><span class="mf">0.2</span><span class="p">]</span>
+
+<span class="n">PLAY</span> <span class="n">RECAP</span> <span class="o">*************************************************************************************************************************************************************</span>
+<span class="hll"><span class="mf">10.100</span><span class="o">.</span><span class="mf">0.2</span>                 <span class="p">:</span> <span class="n">ok</span><span class="o">=</span><span class="mi">3</span>    <span class="n">changed</span><span class="o">=</span><span class="mi">1</span>    <span class="n">unreachable</span><span class="o">=</span><span class="mi">0</span>    <span class="n">failed</span><span class="o">=</span><span class="mi">0</span>   
+</span>
+</pre></div>
+</td></tr></table></div>
 </li>
+<li><p class="first">From the following output we can conclude that:</p>
+<ul class="simple">
+<li>The only task that changed our infrastructure was the installation of nginx</li>
+<li>It seems when you install Nginx is enabled by default, therefore Ansible didn’t have to do anything</li>
+<li>In summary: only 1 item was changed</li>
 </ul>
-<p>The output of running the playbook should be:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>PLAY <span class="o">[</span>nginx_webservers<span class="o">]</span> **************************************************************************************************************************************************************************************************************
-
-TASK <span class="o">[</span>Gathering Facts<span class="o">]</span> ***************************************************************************************************************************************************************************************************************
-ok: <span class="o">[</span><span class="m">127</span>.0.0.1<span class="o">]</span>
-
-TASK <span class="o">[</span>include_role : webservers-nginx<span class="o">]</span> ***********************************************************************************************************************************************************************************************
-
-TASK <span class="o">[</span>webservers-nginx : install the nginx reverse proxy<span class="o">]</span> ****************************************************************************************************************************************************************************
-changed: <span class="o">[</span><span class="m">127</span>.0.0.1<span class="o">]</span>
-
-TASK <span class="o">[</span>webservers-nginx : <span class="nb">enable</span> nginx service<span class="o">]</span> ***************************************************************************************************************************************************************************************
-ok: <span class="o">[</span><span class="m">127</span>.0.0.1<span class="o">]</span>
-
-PLAY RECAP ***************************************************************************************************************************************************************************************************************************
-<span class="m">127</span>.0.0.1                  : <span class="nv">ok</span><span class="o">=</span><span class="m">3</span>    <span class="nv">changed</span><span class="o">=</span><span class="m">1</span>    <span class="nv">unreachable</span><span class="o">=</span><span class="m">0</span>    <span class="nv">failed</span><span class="o">=</span><span class="m">0</span>
+</li>
+<li><p class="first">If the playbook is ran repeatedly, the state on the remote server should be the same (this is called idempotence).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(.venv) ~/ansible $ ansible-playbook -i inventory.ini webservers.yml
 </pre></div>
 </div>
-<p>To confirm everything has worked fine, if you access http://localhost:8080 this should display the popular Nginx welcome page:</p>
-<p><img alt="../../images/2_1_nginx.png" src="../../images/2_1_nginx.png" />Nginx welcome page</p>
+<p><strong>Output</strong>:</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span>
+<span class="n">PLAY</span> <span class="p">[</span><span class="n">nginx_webservers</span><span class="p">]</span> <span class="o">************************************************************************************************************************************************</span>
+
+<span class="n">TASK</span> <span class="p">[</span><span class="n">Gathering</span> <span class="n">Facts</span><span class="p">]</span> <span class="o">*************************************************************************************************************************************************</span>
+<span class="n">ok</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.100</span><span class="o">.</span><span class="mf">0.2</span><span class="p">]</span>
+
+<span class="n">TASK</span> <span class="p">[</span><span class="n">webservers</span><span class="o">-</span><span class="n">nginx</span> <span class="p">:</span> <span class="n">install</span> <span class="n">the</span> <span class="n">nginx</span> <span class="n">reverse</span> <span class="n">proxy</span><span class="p">]</span> <span class="o">**************************************************************************************************************</span>
+<span class="n">ok</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.100</span><span class="o">.</span><span class="mf">0.2</span><span class="p">]</span>
+
+<span class="n">TASK</span> <span class="p">[</span><span class="n">webservers</span><span class="o">-</span><span class="n">nginx</span> <span class="p">:</span> <span class="n">enable</span> <span class="n">nginx</span> <span class="n">service</span><span class="p">]</span> <span class="o">*************************************************************************************************************************</span>
+<span class="n">ok</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.100</span><span class="o">.</span><span class="mf">0.2</span><span class="p">]</span>
+
+<span class="n">PLAY</span> <span class="n">RECAP</span> <span class="o">*************************************************************************************************************************************************************</span>
+<span class="hll"><span class="mf">10.100</span><span class="o">.</span><span class="mf">0.2</span>                 <span class="p">:</span> <span class="n">ok</span><span class="o">=</span><span class="mi">3</span>    <span class="n">changed</span><span class="o">=</span><span class="mi">0</span>    <span class="n">unreachable</span><span class="o">=</span><span class="mi">0</span>    <span class="n">failed</span><span class="o">=</span><span class="mi">0</span>   
+</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+</ul>
+<p>To confirm everything has worked fine, if you access <a class="reference external" href="http://10.100.0.2">http://10.100.0.2</a> this should display the popular Nginx welcome page:</p>
+<div class="rst-figure-alignment figure align-left" id="id1">
+<a class="reference internal image-reference" href="../../images/2_1_nginx.png"><img alt="Nginx welcome page" src="../../images/2_1_nginx.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text"><strong>Nginx default site (welcome page)</strong></span></p>
 </div>
+<br/></div>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
@@ -557,7 +633,7 @@ PLAY RECAP *********************************************************************
 </script>
 
   <p>
-  Last updated on Mar 02, 2019. <br/>
+  Last updated on Mar 03, 2019. <br/>
   </p>
 </footer>
         </div>

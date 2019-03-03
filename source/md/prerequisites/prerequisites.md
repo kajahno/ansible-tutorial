@@ -7,7 +7,10 @@ I wrote this using Linux Ubuntu, but the steps should be transferable to any OS 
 
 ## Create a virtual environment
 
-
+* Update your package list
+  ```
+  $ sudo apt-get update
+  ```
 * Ensure `pip` is installed:
     ```bash
     $ sudo apt-get install python-pip
@@ -20,7 +23,7 @@ I wrote this using Linux Ubuntu, but the steps should be transferable to any OS 
     ```bash
     $ virtualenv -p $( which python3 ) .venv
     ```
-    ```Important:: The virtual environment can be created anywhere in your filesystem, and can have any name. 
+    ```Important:: The virtual environment can be created anywhere in your filesystem, and can have any name.
     ```
 
 ## Activate a virtual environment
@@ -29,20 +32,20 @@ I wrote this using Linux Ubuntu, but the steps should be transferable to any OS 
 You will be doing this quite often, so please keep this command handy:
 ```bash
 $ source .venv/bin/activate
-(.venv) $ 
+(.venv) $
 ```
-After this you will notice how the Linux prompt has changed, adding `(.venv)` at the beginning. 
+After this you will notice how the Linux prompt has changed, adding `(.venv)` at the beginning.
 
 ### Deactivate a virtual environment
 
 To deactivate the virtual environment simply run:
 ```bash
 (.venv) $ deactivate
-$ 
+$
 ```
-After this you will notice how the Linux prompt returns to its original state. 
+After this you will notice how the Linux prompt returns to its original state.
 
-```Important:: **Note**: for the purpose of this tutorial **leave the virtual environment activated** at all times. 
+```Important:: **Note**: for the purpose of this tutorial **leave the virtual environment activated** at all times.
 ```
 
 ## Install Ansible

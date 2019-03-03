@@ -82,7 +82,7 @@ The Vagrant box we just installed can be found [here](https://app.vagrantup.com/
 * Username: `vagrant`
 * Password: `vagrant`
 
-##### How to SSH to a Vagrant VM
+##### How to SSH into a Vagrant VM
 
 There are at least three ways of doing this
 1. Using `vagrant`
@@ -126,7 +126,7 @@ Because Vagrant is using [Virtualbox](https://www.virtualbox.org/wiki/VirtualBox
 
 #### Simple inventory file
 
-The playbook we are going to create needs an inventory file, therefore we will create a tiny one and put the minimun content (this will be covered better in the next chapter).
+The playbook we are going to create needs an inventory file, therefore we will create simple one for now (this will be covered better in the next chapter).
 
 * Create the inventor file:
     ```bash
@@ -143,44 +143,64 @@ The playbook we are going to create needs an inventory file, therefore we will c
 After we have the inventory file, and the infrastructure ready, we are ready to create our first playbook.
 
 * Create the file `webservers.yml`:
-    ```
-    (.venv) ~/ansible $ touch webservers.yml
-    ```
+  ```
+  (.venv) ~/ansible $ touch webservers.yml
+  ```
 * Include the following content in the file:
-    ```eval_rst
-    .. literalinclude:: 1_files/webservers.yml
-       :language: ini
-       :linenos:
-    ```
+  ```eval_rst
+  .. literalinclude:: 1_files/webservers.yml
+     :language: ini
+     :linenos:
+  ```
+* Test the connectivity
+  ```bash
+  (.venv) ~/ansible $ ansible -i inventory.ini -m ping all
+  ```
+  **Output**:
+  ```eval_rst
+  .. literalinclude:: 1_files/ping_output.log
+     :linenos:
+
+  ```
 * Run the playbook:
-    ```bash
-    (.venv) ~/ansible $ ansible-playbook -i inventory.ini webservers.yml
-    ```
+  ```bash
+  (.venv) ~/ansible $ ansible-playbook -i inventory.ini webservers.yml
+  ```
+  **Output**:
+  ```eval_rst
+  .. literalinclude:: 1_files/webservers_output.log
+     :linenos:
+     :emphasize-lines: 7,10,14
 
-The output of running the playbook should be:
-```bash
-PLAY [nginx_webservers] **************************************************************************************************************************************************************************************************************
+  ```
+* From the following output we can conclude that:
+  * The only task that changed our infrastructure was the installation of nginx
+  * It seems when you install Nginx is enabled by default, therefore Ansible didn't have to do anything
+  * In summary: only 1 item was changed
+* If the playbook is ran repeatedly, the state on the remote server should be the same (this is called idempotence).
+  ```
+  (.venv) ~/ansible $ ansible-playbook -i inventory.ini webservers.yml
+  ```
+  **Output**:
+  ```eval_rst
+  .. literalinclude:: 1_files/webservers_idem_output.log
+     :linenos:
+     :emphasize-lines: 14
+  ```
 
-TASK [Gathering Facts] ***************************************************************************************************************************************************************************************************************
-ok: [127.0.0.1]
+To confirm everything has worked fine, if you access [http://10.100.0.2](http://10.100.0.2) this should display the popular Nginx welcome page:
 
-TASK [include_role : webservers-nginx] ***********************************************************************************************************************************************************************************************
+```eval_rst
+.. figure:: img/2_1_nginx.png
+    :width: 400px
+    :align: left
+    :alt: Nginx welcome page
+    :figclass: rst-figure-alignment
 
-TASK [webservers-nginx : install the nginx reverse proxy] ****************************************************************************************************************************************************************************
-changed: [127.0.0.1]
+    **Nginx default site (welcome page)**
 
-TASK [webservers-nginx : enable nginx service] ***************************************************************************************************************************************************************************************
-ok: [127.0.0.1]
-
-PLAY RECAP ***************************************************************************************************************************************************************************************************************************
-127.0.0.1                  : ok=3    changed=1    unreachable=0    failed=0
 ```
-
-To confirm everything has worked fine, if you access http://localhost:8080 this should display the popular Nginx welcome page:
-
-![Nginx welcome page](img/2_1_nginx.png)
-
-
+<br/>
 
 ### References
 - [Python virtual environments](https://docs.python-guide.org/dev/virtualenvs/)
