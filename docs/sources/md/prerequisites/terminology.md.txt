@@ -79,7 +79,7 @@ Focusing on the `roles` directory for a moment, let's point out some things:
 These are the minimum unit of work in Ansible. Ultimately everything is broken down into a set of tasks. A task normally includes a module.
 
 The tasks can be normally placed in two places:
-* within a role (in the file `ROLENAME/tasks/main.yml`) 
+* within a role (in the file `ROLENAME/tasks/main.yml`)
 * directly in a play (by using the object `tasks`)
 ```Note:: **ROLENAME** is just a placeholder, it makes reference to the name of the role.
 ```
