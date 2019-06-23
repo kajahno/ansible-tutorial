@@ -35,9 +35,11 @@ build: clean
 	@find docs -type f -regex '.*\.html\|.*\.js' -print0 | xargs -0 sed -i 's/_static/static/g'
 	${INFO} "Build finished"
 
+serve:
+	${INFO} "Spinning up local webserver..."
+	@cd docs && python -m http.server 8000 --bind 127.0.0.1
 
-
-.PHONY: help Makefile clean build
+.PHONY: help Makefile clean build serve
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
