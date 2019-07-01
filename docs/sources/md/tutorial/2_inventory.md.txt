@@ -128,7 +128,7 @@ The output should be:
 
 ### Multiple inventories
 
-It's a common design pattern to support several environments using Ansible. The final layout of the inventory will depend on how you handle your customers, or how many products you deploy on each environment. Let's evaluate two main layouts.
+It's a common design pattern to take into consideration the variables order of precedence in order to create a directory structure that can support several environments easily. The final layout of the inventory will depend on how you handle your customers, or how many products you deploy on each environment. Let's evaluate two main layouts.
 
 #### Inventory layout 1: multiple environments
 
