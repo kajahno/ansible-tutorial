@@ -1,0 +1,4 @@
+10.100.0.2 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}

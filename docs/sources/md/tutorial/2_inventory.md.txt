@@ -1,8 +1,8 @@
-## Handling the inventory
+## 2 - Handling the inventory
 
 ### Introdution
 
-This section will cover how to work with static inventory files. [Dynamic inventory files](https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html#intro-dynamic-inventory) are out of this scope. 
+This section will cover how to work with static inventory files. [Dynamic inventory files](https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html#intro-dynamic-inventory) are out of this scope.
 
 When working with inventory files, regardless of the type, there are two main abstractions to consider: hosts management and variables management.
 
@@ -25,90 +25,106 @@ atlanta
 raleigh
 ```
 
-In any inventory file there are two default groups: all (includes all of the hosts), and none (includes none of the hosts).
+In any inventory file there are two default groups: `all` (includes all of the hosts), and `none` (includes none of the hosts).
 
-This means that when defining a playbook we can target the right hostgroup in the `hosts` section. Also we can target `all`, and then `limit` to the group of interest we want, like this:
+When defining a playbook we can target the right hostgroup in the `hosts` section. Also, we can target the hostgroup `all`, and then `limit` to the group of interest we want when running our playbook, like this:
+```bash
+(.venv) $ ansible-playbook -i inventory/hosts any_playbook_with_all_hosts.yml --limit atlanta
 ```
-ansible-playbook -i inventory/hosts any_playbook_with_all_hosts.yml --limit atlanta
-``` 
+```Note:: Don't actually run that. It's just to illustrate how the command would be structured.
+```
 
-In our case let's create an inventory file in the following path:
+In our case let's create an empty inventory file in the following path:
 ```
-mkdir -p ~/ansible/inventory
-touch ~/ansible/inventory/hosts
+(.venv) $ mkdir -p ~/ansible_2/inventory
+(.venv) $ touch ~/ansible_2/inventory/hosts
+```
+Let's include the following content (yes, same file from part 1):
+```eval_rst
+   .. literalinclude:: 1_files/inventory.ini
+      :language: yaml
+      :linenos:
 ```
 
 #### Variables management
 
-This section covers the handling of variables within our inventory. These variables include: variables precedence handling and secrets (such as encrypted files to store passwords) 
+This section covers the use of variables by our inventory (and playbooks). The topic includes: variables precedence and secrets via the usage of ansible-vault files (encrypted files to store passwords)
 
 ### Variable precedence
 
-In Ansible there is a quite extended [variable precedence](https://gist.github.com/ekreutz/301c3d38a50abbaad38e638d8361a89e). I have found that the easiest ones to work with are as shown below:
-* inventory/group_vars/all/
-* inventory/group_vars/group1/
-* inventory/host_vars/host1
-* roles/role1/defaults/
-* roles/role1/vars/
-* group_vars/all/
-* --extra-vars (always win)
+In Ansible there is a quite extensive [variable precedence list](https://gist.github.com/ekreutz/301c3d38a50abbaad38e638d8361a89e). I have found that the easiest ones to work with are as shown below (the higher the number, the higher the precedence):
+
+1. inventory/group_vars/all/
+1. inventory/group_vars/group1/
+1. inventory/host_vars/host1
+1. roles/role1/defaults/
+1. roles/role1/vars/
+1. group_vars/all/
+1. `--extra-vars` (always wins)
 
 Now we will refactor the previously created inventory file to take advantage of this.
 
 
-#### Clean-up the inventory file
-* Make sure the following content is in the file `~/ansible/inventory/hosts`:
+#### Cleaning-up the current inventory file
+* Make sure the following content is in the file `~/ansible_2/inventory/hosts.ini`:
+    ```eval_rst
+    .. literalinclude:: 2_files/inventory/hosts.ini
+       :language: yaml
+       :linenos:
     ```
-    [nginx_webservers]
-    127.0.0.1
-    ```
-#### Create the variable files 
-* Create the general group_vars file:
-    ```
-    mkdir -p group_vars/all
-    touch group_vars/all/vars.yml
+#### Create a variable files
+* Create a general group_vars file:
+    ```bash
+    (.venv) ansible_2 $ mkdir -p group_vars/all
+    (.venv) ansible_2 $ touch group_vars/all/vars.yml
     ```
 * Make sure the content of `group_vars/all/vars.yml` is:
+    ```eval_rst
+    .. literalinclude:: 2_files/group_vars/all/vars.yml
+       :language: yaml
+       :linenos:
     ```
-    ---
-
-    ansible_connection: ssh
-    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
-    ```
-* Create the inventory group_vars file:
-    ```
-    mkdir -p inventory/group_vars/all
-    touch inventory/group_vars/all/vars.yml   
+* Create the inventory-level group_vars file:
+    ```bash
+    (.venv) ansible_2 $ mkdir -p inventory/group_vars/all
+    (.venv) ansible_2 $ touch inventory/group_vars/all/vars.yml
     ```
 * Make sure the content of `inventory/group_vars/all/vars.yml` is:
+    ```eval_rst
+    .. literalinclude:: 2_files/inventory/group_vars/all/vars.yml
+       :language: yaml
+       :linenos:
     ```
-    ---
-
-    ansible_ssh_port: 22
+* Create the inventory group_vars/`GROUP_NAME` file:
+    ```bash
+    (.venv) ansible_2 $ mkdir -p inventory/group_vars/nginx_webservers
+    (.venv) ansible_2 $ touch inventory/group_vars/nginx_webservers/vars.yml
     ```
-* Create the inventory group_vars/group file:
+    ```Note:: The name of this directory must match a hostgroup inside the inventory file
     ```
-    mkdir -p inventory/group_vars/nginx_webservers
-    touch inventory/group_vars/nginx_webservers/vars.yml
-    ```
-    > Te name of this directory must match a group name in the inventory file, otherwise it will be ignored by Ansible
 * Make sure the content of `inventory/group_vars/nginx_webservers/vars.yml` is:
+    ```eval_rst
+    .. literalinclude:: 2_files/inventory/group_vars/nginx_webservers/vars.yml
+       :language: yaml
+       :linenos:
     ```
-    ---
 
-    ansible_ssh_port: 2222
-    ansible_user: vagrant
-    ansible_ssh_pass: vagrant
-    ```
-    > Notice how we are overriding the `ansible_ssh_port` specified as 22 in the more general vars file. This is to show that the precedence is maintained. 
-
-#### Run the playbook again
-Same as shown at the end of part to, run:
-```
-ansible-playbook -i inventory/hosts webservers.yml 
+#### Create the vagrant box
+```bash
+(.venv) ~/ansible_2 $ vagrant up
 ```
 
-The output should be the same. 
+#### Run the playbook
+Similar to part 1, run:
+```
+(.venv) ~/ansible_2 $ ansible-playbook -i inventory/hosts.ini webservers.yml
+```
+The output should be:
+```eval_rst
+.. literalinclude:: 2_files/webservers_output.log
+   :linenos:
+   :emphasize-lines: 8,14
+```
 
 ### Multiple inventories
 
@@ -277,7 +293,7 @@ In our case we will modify the ssh password from a file, to an encrypted file. T
     ```
     ---
 
-    ansible_ssh_port: 2222
+    ansible_ssh_port: 2200
     ansible_user: vagrant
     ```
 * Create the vault file for the host group `nginx_webservers`:

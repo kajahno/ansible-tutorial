@@ -61,7 +61,7 @@
   <link rel="stylesheet" href="../../static/theme-overrides.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Best practices and first playbook" href="../tutorial/1_playbook.html" />
+    <link rel="next" title="1 - Best practices and first playbook" href="../tutorial/1_playbook.html" />
     <link rel="prev" title="Terminology" href="terminology.html" /> 
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -107,7 +107,7 @@
                 <div class="DocSiteProduct-logoText">
                     Quickstart Tutorial  
                     <div class="DocSiteProduct-CurrentVersion" align="right">
-                      Updated on Jun 23, 2019
+                      Updated on Jul 01, 2019
                     </div>
                 </div>
             </div>
@@ -171,7 +171,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#deactivate-a-virtual-environment">Deactivate a virtual environment</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#install-ansible">Install Ansible</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-ansible-inside-a-python-virtual-environment">Install Ansible (inside a Python virtual environment)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-virtualbox">Install VirtualBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-vagrant">Install Vagrant</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
@@ -180,7 +180,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Tutorial</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/1_playbook.html">Best practices and first playbook</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/1_playbook.html">1 - Best practices and first playbook</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/1_playbook.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/1_playbook.html#create-a-role-to-provision-the-popular-nginx-webserver-with-a-sample-page">Create a role to provision the popular nginx webserver with a sample page</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../tutorial/1_playbook.html#role-webservers-nginx">Role <code class="docutils literal notranslate"><span class="pre">webservers-nginx</span></code></a></li>
@@ -197,16 +197,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/1_playbook.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/2_inventory.html">Handling the inventory</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/2_inventory.html">2 - Handling the inventory</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/2_inventory.html#introdution">Introdution</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#hosts-management">Hosts management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#variables-management">Variables management</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/2_inventory.html#variable-precedence">Variable precedence</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#clean-up-the-inventory-file">Clean-up the inventory file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#create-the-variable-files">Create the variable files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#run-the-playbook-again">Run the playbook again</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#cleaning-up-the-current-inventory-file">Cleaning-up the current inventory file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#create-a-variable-files">Create a variable files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#create-the-vagrant-box">Create the vagrant box</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial/2_inventory.html#run-the-playbook">Run the playbook</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/2_inventory.html#multiple-inventories">Multiple inventories</a><ul>
@@ -289,7 +290,7 @@
 </div>
 </li>
 <li><p class="first">Create a virtual environment using python3, under <code class="docutils literal notranslate"><span class="pre">~/.venv</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ virtualenv -p <span class="k">$(</span> which python3 <span class="k">)</span> .venv
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ virtualenv -p <span class="k">$(</span> which python3 <span class="k">)</span> ~/.venv
 </pre></div>
 </div>
 <div class="admonition important">
@@ -302,7 +303,7 @@
 <div class="section" id="activate-a-virtual-environment">
 <h2>Activate a virtual environment<a class="headerlink" href="#activate-a-virtual-environment" title="Permalink to this headline">¶</a></h2>
 <p>You will be doing this quite often, so please keep this command handy:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> .venv/bin/activate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> ~/.venv/bin/activate
 <span class="o">(</span>.venv<span class="o">)</span> $
 </pre></div>
 </div>
@@ -321,8 +322,8 @@ $
 </div>
 </div>
 </div>
-<div class="section" id="install-ansible">
-<h2>Install Ansible<a class="headerlink" href="#install-ansible" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="install-ansible-inside-a-python-virtual-environment">
+<h2>Install Ansible (inside a Python virtual environment)<a class="headerlink" href="#install-ansible-inside-a-python-virtual-environment" title="Permalink to this headline">¶</a></h2>
 <p>Get the latest stable release (2.7 at the moment of this guide):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> $ pip install ansible
 </pre></div>
@@ -335,7 +336,7 @@ ansible <span class="m">2</span>.7.6
 </div>
 <div class="section" id="install-virtualbox">
 <h2>Install VirtualBox<a class="headerlink" href="#install-virtualbox" title="Permalink to this headline">¶</a></h2>
-<p>We’ll use VirtualBox as virtualizer on this tutorial.</p>
+<p>We’ll use VirtualBox as virtualizer on this tutorial. It will help to create small local VMs that we can use to test our playbooks and roles against.</p>
 <ul>
 <li><p class="first">Download the latest version from the website <a class="reference external" href="https://www.virtualbox.org/wiki/Linux_Downloads">here</a>.</p>
 <blockquote>
@@ -351,7 +352,7 @@ ansible <span class="m">2</span>.7.6
 </div>
 <div class="section" id="install-vagrant">
 <h2>Install Vagrant<a class="headerlink" href="#install-vagrant" title="Permalink to this headline">¶</a></h2>
-<p>We will use vagrant to quickly spin up virtual machines, using Virtual box as a <a class="reference external" href="https://www.vagrantup.com/docs/providers/">provider</a> (Vagrant will use it by default).</p>
+<p>We will use vagrant to quickly spin up virtual machines, using VirtualBox as a <a class="reference external" href="https://www.vagrantup.com/docs/providers/">provider</a> (Vagrant will use it by default). You can think of Vagrant as a VirtualBox wrapper, which can be used to manage virtual machines programmatically. For more info please visit the <a class="reference external" href="https://www.vagrantup.com/">Vagrant website</a>.</p>
 <ul>
 <li><p class="first">Download the latest version from the <a class="reference external" href="https://releases.hashicorp.com/vagrant/">download page</a> (2.2.0 at the moment of writing this):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://releases.hashicorp.com/vagrant/2.2.0/vagrant_2.2.0_linux_amd64.zip
@@ -394,7 +395,7 @@ Vagrant 2.2.0
   
     <div class="rst-footer-buttons">
       
-        <a href="../tutorial/1_playbook.html" class="btn btn-neutral float-right" title="Best practices and first playbook"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../tutorial/1_playbook.html" class="btn btn-neutral float-right" title="1 - Best practices and first playbook"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="terminology.html" class="btn btn-neutral" title="Terminology"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -414,7 +415,7 @@ Vagrant 2.2.0
 </script>
 
   <p>
-  Last updated on Jun 23, 2019. <br/>
+  Last updated on Jul 01, 2019. <br/>
   </p>
 </footer>
         </div>

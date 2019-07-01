@@ -26,7 +26,7 @@ Even though Ansible provides many modules out of the box that will help to perfo
 
 The development is done inside a Python ecosystem, making it easy to work with in many operating systems.
 
-## Declarative vs Imperative model 
+## Declarative vs Imperative model
 
 In Ansible the syntax is declarative, meaning you specify **what** things should look like on the remote hosts and Ansible will make it happen. The other common syntax is imperative, meaning you specify **how** things should be performed on the remote hosts (such as in Chef).
 

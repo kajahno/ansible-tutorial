@@ -22,7 +22,7 @@
 
 
   
-  <title>Handling the inventory &mdash; Ansible Quickstart Tutorial 0.0.1 documentation</title>
+  <title>2 - Handling the inventory &mdash; Ansible Quickstart Tutorial 0.0.1 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
   <link rel="stylesheet" href="../../static/theme-overrides.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="Best practices and first playbook" href="1_playbook.html" /> 
+    <link rel="prev" title="1 - Best practices and first playbook" href="1_playbook.html" /> 
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -106,7 +106,7 @@
                 <div class="DocSiteProduct-logoText">
                     Quickstart Tutorial  
                     <div class="DocSiteProduct-CurrentVersion" align="right">
-                      Updated on Jun 23, 2019
+                      Updated on Jul 01, 2019
                     </div>
                 </div>
             </div>
@@ -170,7 +170,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../prerequisites/prerequisites.html#deactivate-a-virtual-environment">Deactivate a virtual environment</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../prerequisites/prerequisites.html#install-ansible">Install Ansible</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../prerequisites/prerequisites.html#install-ansible-inside-a-python-virtual-environment">Install Ansible (inside a Python virtual environment)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../prerequisites/prerequisites.html#install-virtualbox">Install VirtualBox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../prerequisites/prerequisites.html#install-vagrant">Install Vagrant</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../prerequisites/prerequisites.html#references">References</a></li>
@@ -179,7 +179,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Tutorial</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="1_playbook.html">Best practices and first playbook</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="1_playbook.html">1 - Best practices and first playbook</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="1_playbook.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1_playbook.html#create-a-role-to-provision-the-popular-nginx-webserver-with-a-sample-page">Create a role to provision the popular nginx webserver with a sample page</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="1_playbook.html#role-webservers-nginx">Role <code class="docutils literal notranslate"><span class="pre">webservers-nginx</span></code></a></li>
@@ -196,16 +196,17 @@
 <li class="toctree-l2"><a class="reference internal" href="1_playbook.html#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Handling the inventory</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2 - Handling the inventory</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introdution">Introdution</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#hosts-management">Hosts management</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#variables-management">Variables management</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#variable-precedence">Variable precedence</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#clean-up-the-inventory-file">Clean-up the inventory file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#create-the-variable-files">Create the variable files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#run-the-playbook-again">Run the playbook again</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cleaning-up-the-current-inventory-file">Cleaning-up the current inventory file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-variable-files">Create a variable files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-the-vagrant-box">Create the vagrant box</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-the-playbook">Run the playbook</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#multiple-inventories">Multiple inventories</a><ul>
@@ -254,7 +255,7 @@
 
           <ul class="wy-breadcrumbs">
   <li><a href="../../index.html">Docs</a> &raquo;</li>
-  <li><a href="">Handling the inventory</a></li>
+  <li><a href="">2 - Handling the inventory</a></li>
   
     <li class="wy-breadcrumbs-aside">
       <a href="https://github.com/kajahno/ansible-tutorial/edit/master/source/md/tutorial/2_inventory.md?description=%3C!---%20Your%20description%20here%20--%3E%0A%0A%2Blabel:%20docsite_pr" class="icon icon-github"> Edit on GitHub</a>
@@ -266,7 +267,7 @@
           <div id="page-content">
           
   <div class="section" id="handling-the-inventory">
-<h1>Handling the inventory<a class="headerlink" href="#handling-the-inventory" title="Permalink to this headline">¶</a></h1>
+<h1>2 - Handling the inventory<a class="headerlink" href="#handling-the-inventory" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introdution">
 <h2>Introdution<a class="headerlink" href="#introdution" title="Permalink to this headline">¶</a></h2>
 <p>This section will cover how to work with static inventory files. <a class="reference external" href="https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html#intro-dynamic-inventory">Dynamic inventory files</a> are out of this scope.</p>
@@ -288,106 +289,179 @@
 <span class="n">raleigh</span>
 </pre></div>
 </div>
-<p>In any inventory file there are two default groups: all (includes all of the hosts), and none (includes none of the hosts).</p>
-<p>This means that when defining a playbook we can target the right hostgroup in the <code class="docutils literal notranslate"><span class="pre">hosts</span></code> section. Also we can target <code class="docutils literal notranslate"><span class="pre">all</span></code>, and then <code class="docutils literal notranslate"><span class="pre">limit</span></code> to the group of interest we want, like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ansible</span><span class="o">-</span><span class="n">playbook</span> <span class="o">-</span><span class="n">i</span> <span class="n">inventory</span><span class="o">/</span><span class="n">hosts</span> <span class="n">any_playbook_with_all_hosts</span><span class="o">.</span><span class="n">yml</span> <span class="o">--</span><span class="n">limit</span> <span class="n">atlanta</span>
+<p>In any inventory file there are two default groups: <code class="docutils literal notranslate"><span class="pre">all</span></code> (includes all of the hosts), and <code class="docutils literal notranslate"><span class="pre">none</span></code> (includes none of the hosts).</p>
+<p>When defining a playbook we can target the right hostgroup in the <code class="docutils literal notranslate"><span class="pre">hosts</span></code> section. Also, we can target the hostgroup <code class="docutils literal notranslate"><span class="pre">all</span></code>, and then <code class="docutils literal notranslate"><span class="pre">limit</span></code> to the group of interest we want when running our playbook, like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> $ ansible-playbook -i inventory/hosts any_playbook_with_all_hosts.yml --limit atlanta
 </pre></div>
 </div>
-<p>In our case let’s create an inventory file in the following path:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/</span><span class="n">ansible</span><span class="o">/</span><span class="n">inventory</span>
-<span class="n">touch</span> <span class="o">~/</span><span class="n">ansible</span><span class="o">/</span><span class="n">inventory</span><span class="o">/</span><span class="n">hosts</span>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Don’t actually run that. It’s just to illustrate how the command would be structured.</p>
+</div>
+<p>In our case let’s create an empty inventory file in the following path:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(.venv) $ mkdir -p ~/ansible_2/inventory
+(.venv) $ touch ~/ansible_2/inventory/hosts
 </pre></div>
 </div>
+<p>Let’s include the following content (yes, same file from part 1):</p>
+<blockquote>
+<div><div class="highlight-yaml notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">nginx_webservers</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">10.100.0.2</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[all:vars]</span>
+<span class="l l-Scalar l-Scalar-Plain">ansible_connection=ssh</span>
+<span class="l l-Scalar l-Scalar-Plain">ansible_user=vagrant</span>
+<span class="l l-Scalar l-Scalar-Plain">ansible_ssh_private_key_file=.vagrant/machines/default/virtualbox/private_key</span>
+<span class="l l-Scalar l-Scalar-Plain">ansible_ssh_common_args=&#39;-o StrictHostKeyChecking=no&#39;</span>
+</pre></div>
+</td></tr></table></div>
+</div></blockquote>
 </div>
 <div class="section" id="variables-management">
 <h3>Variables management<a class="headerlink" href="#variables-management" title="Permalink to this headline">¶</a></h3>
-<p>This section covers the handling of variables within our inventory. These variables include: variables precedence handling and secrets (such as encrypted files to store passwords)</p>
+<p>This section covers the use of variables by our inventory (and playbooks). The topic includes: variables precedence and secrets via the usage of ansible-vault files (encrypted files to store passwords)</p>
 </div>
 </div>
 <div class="section" id="variable-precedence">
 <h2>Variable precedence<a class="headerlink" href="#variable-precedence" title="Permalink to this headline">¶</a></h2>
-<p>In Ansible there is a quite extended <a class="reference external" href="https://gist.github.com/ekreutz/301c3d38a50abbaad38e638d8361a89e">variable precedence</a>. I have found that the easiest ones to work with are as shown below:</p>
-<ul class="simple">
+<p>In Ansible there is a quite extensive <a class="reference external" href="https://gist.github.com/ekreutz/301c3d38a50abbaad38e638d8361a89e">variable precedence list</a>. I have found that the easiest ones to work with are as shown below (the higher the number, the higher the precedence):</p>
+<ol class="simple">
 <li>inventory/group_vars/all/</li>
 <li>inventory/group_vars/group1/</li>
 <li>inventory/host_vars/host1</li>
 <li>roles/role1/defaults/</li>
 <li>roles/role1/vars/</li>
 <li>group_vars/all/</li>
-<li>–extra-vars (always win)</li>
-</ul>
+<li><code class="docutils literal notranslate"><span class="pre">--extra-vars</span></code> (always wins)</li>
+</ol>
 <p>Now we will refactor the previously created inventory file to take advantage of this.</p>
-<div class="section" id="clean-up-the-inventory-file">
-<h3>Clean-up the inventory file<a class="headerlink" href="#clean-up-the-inventory-file" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="cleaning-up-the-current-inventory-file">
+<h3>Cleaning-up the current inventory file<a class="headerlink" href="#cleaning-up-the-current-inventory-file" title="Permalink to this headline">¶</a></h3>
 <ul>
-<li><p class="first">Make sure the following content is in the file <code class="docutils literal notranslate"><span class="pre">~/ansible/inventory/hosts</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">nginx_webservers</span><span class="p">]</span>
-<span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span>
+<li><p class="first">Make sure the following content is in the file <code class="docutils literal notranslate"><span class="pre">~/ansible_2/inventory/hosts.ini</span></code>:</p>
+<div class="highlight-yaml notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">nginx_webservers</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">127.0.0.1</span>
 </pre></div>
-</div>
+</td></tr></table></div>
 </li>
 </ul>
 </div>
-<div class="section" id="create-the-variable-files">
-<h3>Create the variable files<a class="headerlink" href="#create-the-variable-files" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="create-a-variable-files">
+<h3>Create a variable files<a class="headerlink" href="#create-a-variable-files" title="Permalink to this headline">¶</a></h3>
 <ul>
-<li><p class="first">Create the general group_vars file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">group_vars</span><span class="o">/</span><span class="nb">all</span>
-<span class="n">touch</span> <span class="n">group_vars</span><span class="o">/</span><span class="nb">all</span><span class="o">/</span><span class="nb">vars</span><span class="o">.</span><span class="n">yml</span>
+<li><p class="first">Create a general group_vars file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> ansible_2 $ mkdir -p group_vars/all
+<span class="o">(</span>.venv<span class="o">)</span> ansible_2 $ touch group_vars/all/vars.yml
 </pre></div>
 </div>
 </li>
 <li><p class="first">Make sure the content of <code class="docutils literal notranslate"><span class="pre">group_vars/all/vars.yml</span></code> is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<div class="highlight-yaml notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nn">---</span>
 
-<span class="n">ansible_connection</span><span class="p">:</span> <span class="n">ssh</span>
-<span class="n">ansible_ssh_common_args</span><span class="p">:</span> <span class="s1">&#39;-o StrictHostKeyChecking=no&#39;</span>
+<span class="nt">ansible_connection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ssh</span>
+<span class="nt">ansible_ssh_common_args</span><span class="p">:</span> <span class="s">&#39;-o</span><span class="nv"> </span><span class="s">StrictHostKeyChecking=no&#39;</span>
 </pre></div>
-</div>
+</td></tr></table></div>
 </li>
-<li><p class="first">Create the inventory group_vars file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">inventory</span><span class="o">/</span><span class="n">group_vars</span><span class="o">/</span><span class="nb">all</span>
-<span class="n">touch</span> <span class="n">inventory</span><span class="o">/</span><span class="n">group_vars</span><span class="o">/</span><span class="nb">all</span><span class="o">/</span><span class="nb">vars</span><span class="o">.</span><span class="n">yml</span>   
+<li><p class="first">Create the inventory-level group_vars file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> ansible_2 $ mkdir -p inventory/group_vars/all
+<span class="o">(</span>.venv<span class="o">)</span> ansible_2 $ touch inventory/group_vars/all/vars.yml
 </pre></div>
 </div>
 </li>
 <li><p class="first">Make sure the content of <code class="docutils literal notranslate"><span class="pre">inventory/group_vars/all/vars.yml</span></code> is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<div class="highlight-yaml notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nn">---</span>
 
-<span class="n">ansible_ssh_port</span><span class="p">:</span> <span class="mi">22</span>
+<span class="nt">ansible_ssh_port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">22</span>
+<span class="nt">ansible_connection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ssh</span>
+<span class="nt">ansible_ssh_common_args</span><span class="p">:</span> <span class="s">&#39;-o</span><span class="nv"> </span><span class="s">StrictHostKeyChecking=no&#39;</span>
 </pre></div>
-</div>
+</td></tr></table></div>
 </li>
-<li><p class="first">Create the inventory group_vars/group file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">inventory</span><span class="o">/</span><span class="n">group_vars</span><span class="o">/</span><span class="n">nginx_webservers</span>
-<span class="n">touch</span> <span class="n">inventory</span><span class="o">/</span><span class="n">group_vars</span><span class="o">/</span><span class="n">nginx_webservers</span><span class="o">/</span><span class="nb">vars</span><span class="o">.</span><span class="n">yml</span>
+<li><p class="first">Create the inventory group_vars/<code class="docutils literal notranslate"><span class="pre">GROUP_NAME</span></code> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> ansible_2 $ mkdir -p inventory/group_vars/nginx_webservers
+<span class="o">(</span>.venv<span class="o">)</span> ansible_2 $ touch inventory/group_vars/nginx_webservers/vars.yml
 </pre></div>
 </div>
-<blockquote>
-<div><p>Te name of this directory must match a group name in the inventory file, otherwise it will be ignored by Ansible</p>
-</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The name of this directory must match a hostgroup inside the inventory file</p>
+</div>
 </li>
 <li><p class="first">Make sure the content of <code class="docutils literal notranslate"><span class="pre">inventory/group_vars/nginx_webservers/vars.yml</span></code> is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<div class="highlight-yaml notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nn">---</span>
 
-<span class="n">ansible_ssh_port</span><span class="p">:</span> <span class="mi">2222</span>
-<span class="n">ansible_user</span><span class="p">:</span> <span class="n">vagrant</span>
-<span class="n">ansible_ssh_pass</span><span class="p">:</span> <span class="n">vagrant</span>
+<span class="nt">ansible_ssh_port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2200</span>
+<span class="nt">ansible_user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">vagrant</span>
+<span class="nt">ansible_ssh_private_key_file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">.vagrant/machines/default/virtualbox/private_key</span>
 </pre></div>
-</div>
-<blockquote>
-<div><p>Notice how we are overriding the <code class="docutils literal notranslate"><span class="pre">ansible_ssh_port</span></code> specified as 22 in the more general vars file. This is to show that the precedence is maintained.</p>
-</div></blockquote>
+</td></tr></table></div>
 </li>
 </ul>
 </div>
-<div class="section" id="run-the-playbook-again">
-<h3>Run the playbook again<a class="headerlink" href="#run-the-playbook-again" title="Permalink to this headline">¶</a></h3>
-<p>Same as shown at the end of part to, run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ansible</span><span class="o">-</span><span class="n">playbook</span> <span class="o">-</span><span class="n">i</span> <span class="n">inventory</span><span class="o">/</span><span class="n">hosts</span> <span class="n">webservers</span><span class="o">.</span><span class="n">yml</span> 
+<div class="section" id="create-the-vagrant-box">
+<h3>Create the vagrant box<a class="headerlink" href="#create-the-vagrant-box" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>.venv<span class="o">)</span> ~/ansible_2 $ vagrant up
 </pre></div>
 </div>
-<p>The output should be the same.</p>
+</div>
+<div class="section" id="run-the-playbook">
+<h3>Run the playbook<a class="headerlink" href="#run-the-playbook" title="Permalink to this headline">¶</a></h3>
+<p>Similar to part 1, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(.venv) ~/ansible_2 $ ansible-playbook -i inventory/hosts.ini webservers.yml
+</pre></div>
+</div>
+<p>The output should be:</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span>
+<span class="n">PLAY</span> <span class="p">[</span><span class="n">nginx_webservers</span><span class="p">]</span> <span class="o">************************************************************************************************************************************************</span>
+
+<span class="n">TASK</span> <span class="p">[</span><span class="n">Gathering</span> <span class="n">Facts</span><span class="p">]</span> <span class="o">*************************************************************************************************************************************************</span>
+<span class="n">ok</span><span class="p">:</span> <span class="p">[</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">]</span>
+
+<span class="n">TASK</span> <span class="p">[</span><span class="n">webservers</span><span class="o">-</span><span class="n">nginx</span> <span class="p">:</span> <span class="n">install</span> <span class="n">the</span> <span class="n">nginx</span> <span class="n">reverse</span> <span class="n">proxy</span><span class="p">]</span> <span class="o">**************************************************************************************************************</span>
+<span class="hll"><span class="n">changed</span><span class="p">:</span> <span class="p">[</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">]</span>
+</span>
+<span class="n">TASK</span> <span class="p">[</span><span class="n">webservers</span><span class="o">-</span><span class="n">nginx</span> <span class="p">:</span> <span class="n">enable</span> <span class="n">nginx</span> <span class="n">service</span><span class="p">]</span> <span class="o">*************************************************************************************************************************</span>
+<span class="n">ok</span><span class="p">:</span> <span class="p">[</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">]</span>
+
+<span class="n">PLAY</span> <span class="n">RECAP</span> <span class="o">*************************************************************************************************************************************************************</span>
+<span class="hll"><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span>                  <span class="p">:</span> <span class="n">ok</span><span class="o">=</span><span class="mi">3</span>    <span class="n">changed</span><span class="o">=</span><span class="mi">1</span>    <span class="n">unreachable</span><span class="o">=</span><span class="mi">0</span>    <span class="n">failed</span><span class="o">=</span><span class="mi">0</span>   
+</span>
+</pre></div>
+</td></tr></table></div>
 </div>
 </div>
 <div class="section" id="multiple-inventories">
@@ -542,7 +616,7 @@ In our case we will modify the ssh password from a file, to an encrypted file. T
 <li><p class="first">Make sure the content of the file <code class="docutils literal notranslate"><span class="pre">ansible/inventory/group_vars/nginx_webservers/vars.yml</span></code> is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
 
-<span class="n">ansible_ssh_port</span><span class="p">:</span> <span class="mi">2222</span>
+<span class="n">ansible_ssh_port</span><span class="p">:</span> <span class="mi">2200</span>
 <span class="n">ansible_user</span><span class="p">:</span> <span class="n">vagrant</span>
 </pre></div>
 </div>
@@ -636,7 +710,7 @@ ERROR! Attempting to decrypt but no vault secrets found
     <div class="rst-footer-buttons">
       
       
-        <a href="1_playbook.html" class="btn btn-neutral" title="Best practices and first playbook"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="1_playbook.html" class="btn btn-neutral" title="1 - Best practices and first playbook"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -653,7 +727,7 @@ ERROR! Attempting to decrypt but no vault secrets found
 </script>
 
   <p>
-  Last updated on Jun 23, 2019. <br/>
+  Last updated on Jul 01, 2019. <br/>
   </p>
 </footer>
         </div>
