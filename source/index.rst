@@ -6,8 +6,8 @@
 Ansible Quickstart Tutorial
 ===========================
 
-Since the Ansible documentation is so extensive,  this will be a crash 
-course focused on getting started quickly with the tool. 
+Since the Ansible documentation is so extensive,  this will be a crash
+course focused on getting started quickly with the tool.
 
 For the official documentation you can go here_.
 
@@ -32,4 +32,4 @@ For the official documentation you can go here_.
 
    md/tutorial/1_playbook
    md/tutorial/2_inventory
-
+   md/tutorial/3_modules_and_roles

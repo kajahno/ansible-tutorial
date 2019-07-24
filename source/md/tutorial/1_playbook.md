@@ -180,7 +180,7 @@ After we have the inventory file, and the infrastructure ready, we are ready to 
   ```
 * From the following output we can conclude that:
   * The only task that changed our infrastructure was the installation of nginx
-  * In the installed version of Nginx it is enabled by default, therefore Ansible didn't have to enable the service
+  * The installed version of Nginx is enabled by default, therefore Ansible didn't have to enable the service
   * In summary: only 1 item was changed
 * If the playbook is ran repeatedly, the state on the remote server should be the same (this is called idempotence).
   ```

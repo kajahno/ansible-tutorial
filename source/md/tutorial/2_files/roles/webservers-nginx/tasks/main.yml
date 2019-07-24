@@ -1,5 +1,11 @@
 ---
 
+- name: check vars
+  assert:
+    that:
+      - simple_auth_username != ''
+      - simple_auth_password != ''
+
 - name: install the nginx reverse proxy
   apt:
     name: nginx
@@ -10,3 +16,34 @@
     name: nginx
     state: started
     enabled: yes
+
+- name: install python pip
+  apt:
+    name: python-pip
+    update_cache: true
+
+- name: install python library 'passlib'
+  pip:
+    name: passlib
+
+- name: create htpasswd for HTTP basic authentication
+  htpasswd:
+    path: /etc/nginx/.htpasswd
+    name: "{{ simple_auth_username }}"
+    password: "{{ simple_auth_password }}"
+    crypt_scheme: md5_crypt
+
+- name: Add basic HTTP authentication configuration on nginx
+  blockinfile:
+    path: /etc/nginx/sites-available/default
+    marker: "        #### {mark} ANSIBLE MANAGED BLOCK #####"
+    insertafter: '^\s+server_name _;'
+    block: |
+      #
+              auth_basic           "Administrator’s Area";
+              auth_basic_user_file /etc/nginx/.htpasswd;
+
+- name: reload nginx service
+  systemd:
+    name: nginx
+    state: reloaded

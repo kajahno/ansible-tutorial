@@ -13,12 +13,34 @@
   <hr/>
 
 <script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  (function(w,d,t,u,n,s,e){
+    w['SwiftypeObject']=n;w[n]=w[n] || function(){
+      (w[n].q=w[n].q || []).push(arguments);
+    };
+    s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];
+    s.async=1;
+    s.src=u;
+    e.parentNode.insertBefore(s,e);
   })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
 
   _st('install','yABGvz2N8PwcwBxyfzUc','2.0.0');
+
+  var check_search_link_exists = setInterval(function() {
+    search_link = document.getElementsByClassName('st-search-show-outputs st-ui-search-tab');
+    search_input_text = document.getElementById('st-overlay-search-input');
+    if (search_link && search_input_text) {
+      try{
+        var search_message = "Search in Ansible docs";
+        search_link[0].text = search_message;
+        search_input_text.placeholder = search_message;
+        clearInterval(check_search_link_exists);
+      } catch {
+        ;
+      }
+    }
+  }, 100); // check every 100s
+
 </script>
 
   <p>
