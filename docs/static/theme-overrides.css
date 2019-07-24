@@ -1,0 +1,9 @@
+/* Fix line numers for included text blocks */
+td.linenos {
+    min-width: 0;
+}
+
+/* Fix the figures alignment */
+.rst-content div.figure.rst-figure-alignment.align-left {
+    float: unset;
+}
