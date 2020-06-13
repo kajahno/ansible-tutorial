@@ -1,6 +1,6 @@
 ## 2 - Handling the inventory
 
-### Introdution
+### Introduction
 
 This section will cover how to work with static inventory files. [Dynamic inventory files](https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html#intro-dynamic-inventory) are out of this scope.
 

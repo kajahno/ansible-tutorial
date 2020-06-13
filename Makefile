@@ -56,4 +56,3 @@ INFO := @bash -c '\
 	printf $(YELLOW); \
 	echo "=> $$1"; \
 	printf $(NC)' VALUE
-
